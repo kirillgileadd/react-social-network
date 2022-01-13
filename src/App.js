@@ -1,58 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import {Grid} from "@mui/material";
+import Box from "@mui/material/Box";
+import Header from "./components/Header/Header";
+import PersonalPage from "./components/PersonalPage/PersonalPage";
+import Messages from "./components/Messages/Messages";
+import {Route, Routes} from "react-router-dom";
+
+//NavBar
+import NavBar from "./components/NavBar/NavBar";
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import LibraryMusicOutlinedIcon from '@mui/icons-material/LibraryMusicOutlined';
+
+const navItems = [
+    {name: "Profile", icon: <AccountCircleOutlinedIcon />, link: '/'},
+    {name: 'Messages', icon: <ForumOutlinedIcon />, link: '/messages'},
+    {name: 'People', icon: <PeopleAltOutlinedIcon />, link: '/people'},
+    {name: 'Music', icon: <LibraryMusicOutlinedIcon />, link: '/music'}
+]
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Header/>
+            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', pt: '65px'}}>
+                <Grid container sx={{maxWidth: '1050px', pt: 1}} spacing={2}>
+                    <NavBar navItems={navItems}/>
+                    <Grid item xs={10} sx={{mt: '8px'}}>
+                        <Routes>
+                            <Route path={'/'} element={<PersonalPage/>}/>
+                            <Route path={'/messages'} element={<Messages/>}/>
+                        </Routes>
+                    </Grid>
+                </Grid>
+            </Box>
+        </div>
+    );
 }
 
 export default App;

@@ -1,0 +1,21 @@
+.personal__item {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+
+}
+
+.avatar__img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 5px;
+}
+
+.info__divider {
+  margin: 10px 0 !important;
+}
+
+.info__box {
+  /*margin-bottom: 10px;*/
+}
