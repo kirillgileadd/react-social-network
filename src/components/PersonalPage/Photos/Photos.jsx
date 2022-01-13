@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyledPaper} from "../PersonalPage";
 import {ImageList, ImageListItem, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
+import {StyledPaper} from "../../../UI/StyledPaper";
 
 const itemData = [
     {
@@ -24,13 +24,13 @@ const itemData = [
 
 const Photos = () => {
     return (
-        <StyledPaper sx={{mb: 2}}>
+        <StyledPaper >
             <Box sx={{display: 'flex'}}>
                 <Typography variant={'subtitle1'} sx={{mr: 1, mb: 1}}>
                     My photos 4
                 </Typography>
             </Box>
-            <ImageList sx={{ width: 545, m: 0}} cols={4} rowHeight={135}>
+            <ImageList sx={{ width: 540, m: 0}} cols={4} rowHeight={135}>
                 {itemData.map((item) => (
                     <ImageListItem key={item.img}>
                         <img

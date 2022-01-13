@@ -4,19 +4,11 @@ import styles from "./PersonalPage.module.css";
 import avatar from '../../images/img.jpg'
 import Box from "@mui/material/Box";
 import Posts from "./Posts/Posts";
-import {styled} from "@mui/material/styles";
 import Photos from "./Photos/Photos";
-
-export const StyledPaper = styled(Paper)(({theme}) => ({
-    backgroundColor: '#fff',
-    borderRadius: '5px',
-    padding: '15px',
-    boxShadow: "0px 0px 1px 0px rgba(0, 0, 0, 0.21)"
-}));
+import {StyledPaper} from "../../UI/StyledPaper";
 
 const PersonalPage = () => {
     return (
-
             <Grid container spacing={2}>
                 <Grid  item xs={4}>
                     <StyledPaper>
@@ -25,7 +17,7 @@ const PersonalPage = () => {
                     </StyledPaper>
                 </Grid>
                 <Grid  item xs={8}>
-                    <StyledPaper sx={{mb: 2}} >
+                    <StyledPaper >
                         <Box className={styles.info__box} sx={{display: 'flex', justifyContent: 'space-between'}}>
                             <Box >
                                 <Typography variant={'h6'}>

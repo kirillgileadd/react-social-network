@@ -1,12 +1,12 @@
 import React from 'react';
 import {Grid, InputBase, Paper} from "@mui/material";
-import {StyledPaper} from "../PersonalPage/PersonalPage";
 import Box from "@mui/material/Box";
 import Dialogs from "./Dialogs";
 import MessagesItems from "./MessagesItems";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from '@mui/icons-material/Search';
 import SendIcon from '@mui/icons-material/Send';
+import {StyledPaper} from "../../UI/StyledPaper";
 
 
 const MessagesSearch = () => {
@@ -49,7 +49,7 @@ const SendMessageInput = () => {
 
 const Messages = () => {
     return (
-        <StyledPaper sx={{overflowY: 'hidden', height: '87vh', p: 0}}>
+        <StyledPaper sx={{overflowY: 'hidden', height: '86vh', p: 0}}>
             <Box sx={{height: '100%'}}>
                 <Grid container sx={{height: '100%'}}>
                     <Grid item xs={4} sx={{height: '100%', borderRight: '1px solid lightgray'}}>
@@ -57,7 +57,7 @@ const Messages = () => {
                         <Dialogs/>
                     </Grid>
                     <Grid item xs={8} sx={{display: "flex", justifyContent: "space-between", flexDirection: 'column'}}>
-                        <MessagesItems dialogs={false}/>
+                        <MessagesItems dialogs={true}/>
                         <SendMessageInput/>
                     </Grid>
                 </Grid>

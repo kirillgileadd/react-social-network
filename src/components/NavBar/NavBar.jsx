@@ -40,7 +40,7 @@ export default function NavBar({navItems}) {
                 }}>
                     {
                         navItems.map((item) =>
-                            <SlyledLink to={item.link}>
+                            <SlyledLink to={item.link} key={item.name}>
                                 <ListItemButton>
                                     <ListItemIcon>
                                         {item.icon}

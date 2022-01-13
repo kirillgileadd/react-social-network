@@ -1,28 +1,32 @@
 import React from 'react';
-import {Box, InputBase, Typography} from "@mui/material";
-import {StyledPaper} from "../PersonalPage";
-import IconButton from "@mui/material/IconButton";
-import SendIcon from "@mui/icons-material/Send";
+import {Box} from "@mui/material";
+import PostInput from "./PostInput";
+import PostItem from "./PostItem";
+import {addLikeAction, addPostAction} from "../../../redux/actions/post";
+import {useDispatch, useSelector} from "react-redux";
 
 const Posts = () => {
+    const dispatch = useDispatch()
+    const {posts} = useSelector(({posts}) => posts)
+
+    const addPost = (post, setPostVale) => {
+        if(post) {
+            dispatch(addPostAction(post))
+            setPostVale('')
+        }
+    }
+
+    const addLike = (id) => {
+        dispatch(addLikeAction(id))
+    }
+
+
     return (
         <Box>
-            <StyledPaper>
-                <Box
-                    component="form"
-                    sx={{display: 'flex', alignItems: 'center'}}
-                >
-
-                    <InputBase
-                        sx={{ flex: 1 }}
-                        placeholder="Write a message..."
-                        inputProps={{ 'aria-label': 'Write a message' }}
-                    />
-                    <IconButton color={'primary'} aria-label="menu">
-                        <SendIcon />
-                    </IconButton>
-                </Box>
-            </StyledPaper>
+            <PostInput addPost={addPost}  />
+            {
+                posts.map((post) => <PostItem key={post.id} {...post} addLike={addLike}/>)
+            }
         </Box>
     );
 };
