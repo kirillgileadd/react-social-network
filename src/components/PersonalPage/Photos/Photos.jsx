@@ -30,7 +30,7 @@ const Photos = () => {
                     My photos 4
                 </Typography>
             </Box>
-            <ImageList sx={{ width: 540, m: 0}} cols={4} rowHeight={135}>
+            <ImageList sx={{ maxWidth: 540, m: 0, flexWrap: 'wrap'}} cols={4} rowHeight={135}>
                 {itemData.map((item) => (
                     <ImageListItem key={item.img}>
                         <img

@@ -58,30 +58,44 @@ const Header = () => {
         <div>
             <Box>
                 <AppBar position='fixed' sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                    <Toolbar sx={{width: "1050px", display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                        <Box sx={{display: "flex", alignItems: "center"}}>
-                            <Box sx={{mr: '15px'}}>
-                                <img src={logo} alt=""/>
+                    <Toolbar sx={{
+                        width: "100%",
+                        maxWidth: "1050px",
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                    }}>
+                        <Box sx={{
+                            display: 'flex',
+                            width: "100%",
+                            padding: '0 15px',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
+                        }}>
+                            <Box sx={{display: "flex", alignItems: "center",}}>
+                                <Box sx={{mr: '15px'}}>
+                                    <img src={logo} alt=""/>
+                                </Box>
+                                <Typography
+                                    variant="h6"
+                                    noWrap
+                                    component="div"
+                                    sx={{display: {xs: 'none', sm: 'block'}, marginRight: 2}}
+                                >
+                                    GileadSocial
+                                </Typography>
+                                <Search>
+                                    <SearchIconWrapper>
+                                        <SearchIcon/>
+                                    </SearchIconWrapper>
+                                    <StyledInputBase
+                                        placeholder="Search…"
+                                        inputProps={{'aria-label': 'search'}}
+                                    />
+                                </Search>
                             </Box>
-                            <Typography
-                                variant="h6"
-                                noWrap
-                                component="div"
-                                sx={{display: {xs: 'none', sm: 'block'}, marginRight: 2}}
-                            >
-                                GileadSocial
-                            </Typography>
-                            <Search>
-                                <SearchIconWrapper>
-                                    <SearchIcon/>
-                                </SearchIconWrapper>
-                                <StyledInputBase
-                                    placeholder="Search…"
-                                    inputProps={{'aria-label': 'search'}}
-                                />
-                            </Search>
+                            <Avatar alt="Remy Sharp" src={avatar}/>
                         </Box>
-                        <Avatar alt="Remy Sharp" src={avatar}/>
                     </Toolbar>
                 </AppBar>
             </Box>

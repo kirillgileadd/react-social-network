@@ -28,6 +28,15 @@ export const postsReducer = (state = initialState, action) => {
         case 'ADD_LIKE': {
             return  {
                 ...state,
+                posts: state.posts.map((post) => {
+                    if(post.id === action.payload.id) {
+                        return {
+                            ...post,
+                            likesCount: action.payload.likesCount + 1
+                        }
+                    }
+                    return post
+                })
             }
         }
         default:

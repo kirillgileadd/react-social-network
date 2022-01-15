@@ -16,10 +16,9 @@ const Posts = () => {
         }
     }
 
-    const addLike = (id) => {
-        dispatch(addLikeAction(id))
+    const addLike = (post) => {
+        dispatch(addLikeAction(post))
     }
-
 
     return (
         <Box>

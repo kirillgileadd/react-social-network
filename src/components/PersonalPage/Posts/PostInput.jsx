@@ -26,8 +26,8 @@ const PostInput = ({addPost}) => {
                     value={postInputValue}
                     onChange={handlePostInputValue}
                     sx={{ flex: 1, m: '0px 10px' }}
-                    placeholder="Write a message..."
-                    inputProps={{ 'aria-label': 'Write a message' }}
+                    placeholder="Share something new..."
+                    inputProps={{ 'aria-label': 'Share something new' }}
                 />
                 <IconButton onClick={() => addPost(postInputValue, setPostInputValue)} color={'primary'} aria-label="menu">
                     <SendIcon />

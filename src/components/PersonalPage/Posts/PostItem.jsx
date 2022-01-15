@@ -10,20 +10,27 @@ import IconButton from "@mui/material/IconButton";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import avatar from '../../../images/img.jpg'
-import {Button} from "@mui/material";
 import {LiskesButton} from "../../../UI/LiskesButton";
-import {useDispatch} from "react-redux";
-import {addLikeAction} from "../../../redux/actions/post";
+
 
 const PostItem = ({id, value, likesCount, addLike, registeredAt}) => {
 
 
+    const newLikesCount = () => {
+        console.log(likesCount)
+        let post = {
+            id: id,
+            likesCount: likesCount
+        }
+        addLike(post)
+    }
+
     return (
         <StyledPaper>
-            <Box sx={{display: 'flex', alignItems: 'flex-start'}}>
-                <ListItem alignItems="flex-start" sx={{m: 0, p: 0}}>
-                    <ListItemAvatar>
-                        <Avatar alt="Cindy Baker" src={avatar}/>
+            <Box sx={{display: 'flex', alignItems: 'flex-start', mb: 2}}>
+                <ListItem alignItems="center" sx={{m: 0, p: 0}}>
+                    <ListItemAvatar sx={{marginRight: 1}}>
+                        <Avatar sx={{height: 56, width: 56}} alt="Cindy Baker" src={avatar}/>
                     </ListItemAvatar>
                     <ListItemText
                         primary="Kirill"
@@ -49,7 +56,7 @@ const PostItem = ({id, value, likesCount, addLike, registeredAt}) => {
                 </Typography>
             </Box>
             <Box sx={{display: 'flex', alignItems: 'center'}}>
-                <LiskesButton onClick={() => addLike(id)}>
+                <LiskesButton onClick={newLikesCount}>
                     <FavoriteBorderIcon sx={{mr: 1}} />
                     <Typography>
                         {likesCount}

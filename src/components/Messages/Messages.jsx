@@ -49,7 +49,7 @@ const SendMessageInput = () => {
 
 const Messages = () => {
     return (
-        <StyledPaper sx={{overflowY: 'hidden', height: '86vh', p: 0}}>
+        <StyledPaper sx={{overflowY: 'hidden', height: 'calc(100vh - 97px)', p: 0}}>
             <Box sx={{height: '100%'}}>
                 <Grid container sx={{height: '100%'}}>
                     <Grid item xs={4} sx={{height: '100%', borderRight: '1px solid lightgray'}}>

@@ -12,11 +12,13 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import LibraryMusicOutlinedIcon from '@mui/icons-material/LibraryMusicOutlined';
+import EditProfileInfo from "./components/PersonalPage/PersonalInfo/EditProfileInfo";
+import Users from "./components/Users/Users";
 
 const navItems = [
     {name: "Profile", icon: <AccountCircleOutlinedIcon />, link: '/'},
     {name: 'Messages', icon: <ForumOutlinedIcon />, link: '/messages'},
-    {name: 'People', icon: <PeopleAltOutlinedIcon />, link: '/people'},
+    {name: 'Users', icon: <PeopleAltOutlinedIcon />, link: '/users'},
     {name: 'Music', icon: <LibraryMusicOutlinedIcon />, link: '/music'}
 ]
 
@@ -32,6 +34,8 @@ function App() {
                         <Routes>
                             <Route path={'/'} element={<PersonalPage/>}/>
                             <Route path={'/messages'} element={<Messages/>}/>
+                            <Route path={'/edit'} element={<EditProfileInfo/>}/>
+                            <Route path={'/users'} element={<Users/>}/>
                         </Routes>
                     </Grid>
                 </Grid>

@@ -5,7 +5,10 @@ export const addPostAction = (post) => {
     }
 }
 
-export const addLikeAction = (id) => ({
+export const addLikeAction = ({id, likesCount}) => ({
     type: 'ADD_LIKE',
-    payload: id
+    payload: {
+        id,
+        likesCount
+    }
 })
