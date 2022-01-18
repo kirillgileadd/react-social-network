@@ -16,7 +16,7 @@ import EditProfileInfo from "./components/PersonalPage/PersonalInfo/EditProfileI
 import Users from "./components/Users/Users";
 
 const navItems = [
-    {name: "Profile", icon: <AccountCircleOutlinedIcon />, link: '/'},
+    {name: "Profile", icon: <AccountCircleOutlinedIcon />, link: '/2'},
     {name: 'Messages', icon: <ForumOutlinedIcon />, link: '/messages'},
     {name: 'Users', icon: <PeopleAltOutlinedIcon />, link: '/users'},
     {name: 'Music', icon: <LibraryMusicOutlinedIcon />, link: '/music'}
@@ -32,7 +32,7 @@ function App() {
                     <NavBar navItems={navItems}/>
                     <Grid item xs={10} sx={{mt: '8px'}}>
                         <Routes>
-                            <Route path={'/'} element={<PersonalPage/>}/>
+                            <Route path={'/:id'} element={<PersonalPage/>}/>
                             <Route path={'/messages'} element={<Messages/>}/>
                             <Route path={'/edit'} element={<EditProfileInfo/>}/>
                             <Route path={'/users'} element={<Users/>}/>

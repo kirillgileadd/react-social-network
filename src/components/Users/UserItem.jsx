@@ -1,13 +1,20 @@
 import React from 'react';
-import {Avatar, Divider, ListItem, ListItemAvatar, ListItemText} from "@mui/material";
+import {Avatar, Button, Divider, ListItem, ListItemAvatar, ListItemText} from "@mui/material";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import {stringAvatar, stringToColor} from "../../UI/UsersAvatar";
+import {StyledLink} from "../../UI/Links/StyledLink";
 
-const UserItem = () => {
+
+const UserItem = ({name, photos, status, location, followed, id, followUser, unfollowUser}) => {
     return (
         <>
-            <ListItem alignItems="flex-start" sx={{p: '15px 0px', width: '100%'}}>
+            <ListItem alignItems="flex-start" sx={{p: 0, width: '100%'}}>
                 <ListItemAvatar sx={{mr: 2}}>
-                    <Avatar sx={{height: 90, width: 90}} alt="User photo" src="/static/images/avatar/1.jpg">KG</Avatar>
+                    <StyledLink to={'/2'}>
+                        <Avatar {...stringAvatar(name.toUpperCase())}
+                                sx={{height: 80, width: 80, bgcolor: stringToColor(name),}} src={photos.large}/>
+                    </StyledLink>
                 </ListItemAvatar>
                 <ListItemText
                     sx={{
@@ -21,24 +28,41 @@ const UserItem = () => {
                             fontWeight={'bold'}
                             color={'primary.main'}
                         >
-                            Kirill Gilead
+                            {name}
                         </Typography>
                     }
                     secondary={
                         <>
                             <Typography
                                 variant="body2"
+                                noWrap
+                                width={"300px"}
                             >
-                                Lorem ipsum dolor sit amet.
+                                {status ? status : 'Status'}
                             </Typography>
-                            <Typography
-                                sx={{display: 'inline'}}
-                                component="span"
-                                variant="body2"
-                                color={'primary.main'}
-                            >
-                                White a message
-                            </Typography>
+                            <Box display={'flex'} justifyContent={'space-between'}>
+                                <Typography
+                                    sx={{display: 'inline'}}
+                                    component="span"
+                                    variant="body2"
+                                    color={'primary.main'}
+                                >
+                                    White a message
+                                </Typography>
+                                {
+                                    followed ? (
+                                        <Button onClick={() => unfollowUser(id)}>
+                                            Unfollow
+                                        </Button>
+                                    ) : (
+                                        <Button onClick={() => followUser(id)}>
+                                            Follow
+                                        </Button>
+                                    )
+                                }
+
+                            </Box>
+
                         </>
                     }
                 />
