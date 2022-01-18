@@ -1,14 +1,11 @@
 import React from 'react';
 import {StyledPaper} from "../../../../UI/StyledPaper";
-import styles from "../../PersonalPage.module.css";
-import avatar from "../../../../images/img.jpg";
 import {Button, List, ListItem} from "@mui/material";
 import Box from "@mui/material/Box";
 import {styled} from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import UploadIcon from '@mui/icons-material/Upload';
 import {StyledLink} from "../../../../UI/Links/StyledLink";
-import {Link} from "react-router-dom";
 
 
 export const AvatarBox = styled(Box)(({theme}) => ({
@@ -33,11 +30,11 @@ export const AvatarOptions = styled('div')(({theme}) => ({
 }));
 
 
-const Avatar = () => {
+const Avatar = ({photos}) => {
     return (
         <StyledPaper>
             <AvatarBox>
-                <img className={styles.avatar__img} src={avatar} alt=""/>
+                <img style={{width: '100%', height: '100%', objectFit: 'cover'}} src={photos.large} alt=""/>
                 <AvatarOptions>
                     <List sx={{p: 0, m: 0}}>
                         <ListItem sx={{

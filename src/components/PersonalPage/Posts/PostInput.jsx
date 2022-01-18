@@ -6,7 +6,7 @@ import SendIcon from "@mui/icons-material/Send";
 import {StyledPaper} from "../../../UI/StyledPaper";
 import {AddPostInput} from "../../../UI/AddPostInput";
 
-const PostInput = ({addPost}) => {
+const PostInput = ({addPost, photos}) => {
     const [postInputValue, setPostInputValue] = useState('')
 
     const handlePostInputValue = (e) => {
@@ -19,7 +19,7 @@ const PostInput = ({addPost}) => {
                 component="form"
                 sx={{display: 'flex', alignItems: 'flex-start'}}
             >
-                <Avatar alt="Remy Sharp" src={avatar}/>
+                <Avatar alt="Remy Sharp" src={photos.small}/>
                 <AddPostInput
                     multiline
                     maxRows={6}

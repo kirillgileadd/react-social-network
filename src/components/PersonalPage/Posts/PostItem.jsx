@@ -9,18 +9,15 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import avatar from '../../../images/img.jpg'
-import {LiskesButton} from "../../../UI/LiskesButton";
+import {LikesButton} from "../../../UI/LiskesButton";
 
 
-const PostItem = ({id, value, likesCount, addLike, registeredAt}) => {
-
+const PostItem = ({id, value, likes, addLike, registeredAt, photos, fullname}) => {
 
     const newLikesCount = () => {
-        console.log(likesCount)
         let post = {
             id: id,
-            likesCount: likesCount
+            likes,
         }
         addLike(post)
     }
@@ -30,21 +27,21 @@ const PostItem = ({id, value, likesCount, addLike, registeredAt}) => {
             <Box sx={{display: 'flex', alignItems: 'flex-start', mb: 2}}>
                 <ListItem alignItems="center" sx={{m: 0, p: 0}}>
                     <ListItemAvatar sx={{marginRight: 1}}>
-                        <Avatar sx={{height: 56, width: 56}} alt="Cindy Baker" src={avatar}/>
+                        <Avatar sx={{height: 56, width: 56}} alt="Cindy Baker" src={photos.small}/>
                     </ListItemAvatar>
-                    <ListItemText
-                        primary="Kirill"
-                        secondary={
-                            <Typography
-                                sx={{display: 'inline'}}
-                                component="span"
-                                variant="body2"
-                                color="text.secondary"
-                            >
-                                {registeredAt}
-                            </Typography>
-                        }
-                    />
+                    <ListItemText sx={{mt: 0}}>
+                        <Typography color={'primary'}>
+                            {fullname.split(' ')[0]}
+                        </Typography>
+                        <Typography
+                            sx={{display: 'inline'}}
+                            component="span"
+                            variant="body2"
+                            color="text.secondary"
+                        >
+                            {registeredAt}
+                        </Typography>
+                    </ListItemText>
                 </ListItem>
                 <IconButton>
                     <MoreHorizIcon color={'primary'}/>
@@ -56,15 +53,18 @@ const PostItem = ({id, value, likesCount, addLike, registeredAt}) => {
                 </Typography>
             </Box>
             <Box sx={{display: 'flex', alignItems: 'center'}}>
-                <LiskesButton onClick={newLikesCount}>
-                    <FavoriteBorderIcon sx={{mr: 1}} />
-                    <Typography>
-                        {likesCount}
-                    </Typography>
-                </LiskesButton>
+                <LikesButton
+                    onClick={newLikesCount}
+                    value='select'
+                    selected={likes.isLiked}
+                >
+                    <FavoriteBorderIcon sx={{mr: 1}}/>
+                    {likes.likesCount}
+                </LikesButton>
             </Box>
         </StyledPaper>
-    );
+    )
+        ;
 };
 
 export default PostItem;

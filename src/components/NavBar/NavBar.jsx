@@ -9,7 +9,7 @@ import {SlyledNavLink} from "../../UI/Links/StyledNavLink";
 export default function NavBar({navItems}) {
     return (
         <Grid item xs={2}>
-            <nav aria-label="main mailbox folders" disablePadding>
+            <nav aria-label="main mailbox folders">
                 <List sx={{
                     '& .MuiListItemButton-root': {
                         borderRadius: "5px"
