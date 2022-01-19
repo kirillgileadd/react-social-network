@@ -43,7 +43,8 @@ export const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
-                users: [...action.payload],
+                users: [...action.payload.users],
+                totalCount: action.payload.totalCount
 
             }
         }
@@ -57,12 +58,6 @@ export const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: action.payload
-            }
-        }
-        case 'SET_USERS_TOTAL_COUNT': {
-            return {
-                ...state,
-                totalCount: action.payload,
             }
         }
         default:

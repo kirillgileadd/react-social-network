@@ -16,9 +16,7 @@ export const unfollowAction = (userId) => {
 export const fetchUsers = (pageSize, currentPage) => (dispatch) => {
     dispatch(setLoading(false))
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${String(currentPage)}&count=${(String(pageSize))}`).then(response => {
-        dispatch(setUsersAction(response.data.items))
-        dispatch(setUsersTotalCountAction(response.data.totalCount))
-
+        dispatch(setUsersAction(response.data))
     })
 }
 
@@ -27,15 +25,14 @@ export const setLoading = (value) => ({
     payload: value
 })
 
-export const setUsersAction = (users) => ({
+export const setUsersAction = (value) => ({
     type: 'SET_USERS',
-    payload: users
+    payload: {
+        users: value.items,
+        totalCount: value.totalCount
+    }
 })
 
-export const setUsersTotalCountAction = (count) => ({
-    type: 'SET_USERS_TOTAL_COUNT',
-    payload: count
-})
 
 export const changePageNumberAction = (currentPage) => ({
     type: 'CURRENT_PAGE_NUMBER',
