@@ -11,7 +11,7 @@ const UserItem = ({name, photos, status, location, followed, id, followUser, unf
         <>
             <ListItem alignItems="flex-start" sx={{p: 0, width: '100%'}}>
                 <ListItemAvatar sx={{mr: 2}}>
-                    <StyledLink to={'/2'}>
+                    <StyledLink to={`/${id}`}>
                         <Avatar {...stringAvatar(name.toUpperCase())}
                                 sx={{height: 80, width: 80, bgcolor: stringToColor(name),}} src={photos.large}/>
                     </StyledLink>

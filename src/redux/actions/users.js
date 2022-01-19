@@ -18,6 +18,7 @@ export const fetchUsers = (pageSize, currentPage) => (dispatch) => {
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${String(currentPage)}&count=${(String(pageSize))}`).then(response => {
         dispatch(setUsersAction(response.data.items))
         dispatch(setUsersTotalCountAction(response.data.totalCount))
+
     })
 }
 

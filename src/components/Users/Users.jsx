@@ -18,9 +18,10 @@ import Loading from "./Loading";
 
 const Users = () => {
     const dispatch = useDispatch()
+    const {isLoading} = useSelector(({users}) => users)
     const {users} = useSelector(({users}) => users)
     const {currentPage, pageSize, totalCount} = useSelector(({users}) => users)
-    const {isLoading} = useSelector(({users}) => users)
+
 
     let pageCount = Math.ceil(totalCount / pageSize)
 
@@ -40,7 +41,7 @@ const Users = () => {
     const handleChangePageNumber = (event, value) => {
         dispatch(changePageNumberAction(value))
     }
-
+    console.log(isLoading)
     return (
         <Box>
             <Grid container spacing={2}>

@@ -18,3 +18,8 @@ export const setProfileAction = (profile) => ({
     payload: profile
 })
 
+export const setUserProfileLoadingAction = (value) => ({
+    type: 'SET_USER_PROFILE_LOADING',
+    payload: value
+})
+

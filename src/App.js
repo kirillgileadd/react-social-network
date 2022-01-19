@@ -32,7 +32,7 @@ function App() {
                     <NavBar navItems={navItems}/>
                     <Grid item xs={10} sx={{mt: '8px'}}>
                         <Routes>
-                            <Route path={'/:id'} element={<PersonalPage/>}/>
+                            <Route path={'/:userId'} element={<PersonalPage/>}/>
                             <Route path={'/messages'} element={<Messages/>}/>
                             <Route path={'/edit'} element={<EditProfileInfo/>}/>
                             <Route path={'/users'} element={<Users/>}/>

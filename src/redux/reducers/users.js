@@ -42,8 +42,9 @@ export const usersReducer = (state = initialState, action) => {
         case 'SET_USERS': {
             return {
                 ...state,
-                users: [...action.payload],
                 isLoading: true,
+                users: [...action.payload],
+
             }
         }
         case 'CURRENT_PAGE_NUMBER': {
@@ -52,16 +53,16 @@ export const usersReducer = (state = initialState, action) => {
                 currentPage: action.payload
             }
         }
-        case 'SET_USERS_TOTAL_COUNT': {
-            return {
-                ...state,
-                totalCount: action.payload
-            }
-        }
         case 'SET_LOADING': {
             return {
                 ...state,
                 isLoading: action.payload
+            }
+        }
+        case 'SET_USERS_TOTAL_COUNT': {
+            return {
+                ...state,
+                totalCount: action.payload,
             }
         }
         default:

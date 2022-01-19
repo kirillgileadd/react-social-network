@@ -10,7 +10,8 @@ const initialState = {
             registeredAt: '10 minutes ago'
         }
     ],
-    profile: null
+    profile: null,
+    isLoading: false
 }
 
 export const personalPageReducer = (state = initialState, action) => {
@@ -50,7 +51,14 @@ export const personalPageReducer = (state = initialState, action) => {
         case 'SET_USER_PROFILE': {
             return {
                 ...state,
-                profile: action.payload
+                profile: action.payload,
+                isLoading: true
+            }
+        }
+        case 'SET_USER_PROFILE_LOADING': {
+            return {
+                ...state,
+                isLoading: action.payload,
             }
         }
         default:

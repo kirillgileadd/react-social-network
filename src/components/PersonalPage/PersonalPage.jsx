@@ -8,27 +8,38 @@ import UsersPersonalPage from "./UsersPersonalPage/UsersPersonalPage";
 import PrettyBlock from "./PrettyBlock";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
-import {addLikeAction, addPostAction, setProfileAction} from "../../redux/actions/personalPage";
+import {
+    addLikeAction,
+    addPostAction,
+    setProfileAction,
+    setUserProfileLoadingAction
+} from "../../redux/actions/personalPage";
 import {fetchUsers} from "../../redux/actions/users";
+import { useParams } from 'react-router-dom';
+
 
 const PersonalPage = () => {
     const dispatch = useDispatch()
+    let { userId } = useParams();
     const profile = useSelector(({personalPage}) => personalPage.profile)
     const posts = useSelector(({personalPage}) => personalPage.posts)
+    const isLoading = useSelector(({personalPage}) => personalPage.isLoading)
     const {users} = useSelector(({users}) => users)
-    console.log(profile)
+    console.log(isLoading)
+
+
+    useEffect(() => {
+        dispatch(setUserProfileLoadingAction(false))
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${String(userId)}`).then(response => {
+            dispatch(setProfileAction(response.data))
+        })
+    }, [userId])
 
 
     useEffect(() => {
         dispatch(fetchUsers(6))
     }, [])
 
-    useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
-            console.log(response.data)
-            dispatch(setProfileAction(response.data))
-        })
-    }, [])
 
     const addPost = (post, setPostVale) => {
         if (post) {
@@ -42,7 +53,7 @@ const PersonalPage = () => {
     }
 
     return (
-        profile &&
+        isLoading &&
         <Grid container spacing={2}>
             <Grid item xs={4}>
                 <Avatar {...profile}/>
