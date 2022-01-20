@@ -6,7 +6,7 @@ import {Button, Grid, Pagination} from "@mui/material";
 import UserItem from "./UserItem";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    changePageNumberAction,
+    changePageNumberAction, cleanUsersAction,
     fetchUsers,
     followAction,
     setUsersAction,
@@ -14,6 +14,7 @@ import {
 } from "../../redux/actions/users";
 import axios from "axios";
 import Loading from "./Loading";
+import {useLocation} from "react-router-dom";
 
 
 const Users = () => {
@@ -21,12 +22,15 @@ const Users = () => {
     const {isLoading} = useSelector(({users}) => users)
     const {users} = useSelector(({users}) => users)
     const {currentPage, pageSize, totalCount} = useSelector(({users}) => users)
-
+    console.log(useLocation())
 
     let pageCount = Math.ceil(totalCount / pageSize)
 
     useEffect(() => {
         dispatch(fetchUsers(pageSize, currentPage))
+        return function cleanUp() {
+            dispatch(cleanUsersAction())
+        }
     }, [currentPage])
 
 
@@ -41,7 +45,8 @@ const Users = () => {
     const handleChangePageNumber = (event, value) => {
         dispatch(changePageNumberAction(value))
     }
-    console.log(isLoading)
+
+
     return (
         <Box>
             <Grid container spacing={2}>

@@ -33,6 +33,14 @@ export const setUsersAction = (value) => ({
     }
 })
 
+export const cleanUsersAction = () => ({
+    type: 'CLEAN_USERS',
+    payload: {
+        users: [],
+        totalCount: 0,
+    }
+})
+
 
 export const changePageNumberAction = (currentPage) => ({
     type: 'CURRENT_PAGE_NUMBER',

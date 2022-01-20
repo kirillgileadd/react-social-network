@@ -48,6 +48,14 @@ export const usersReducer = (state = initialState, action) => {
 
             }
         }
+        case 'CLEAN_USERS': {
+            return {
+                ...state,
+                users: [...action.payload.users],
+                totalCount: action.payload.totalCount
+
+            }
+        }
         case 'CURRENT_PAGE_NUMBER': {
             return {
                 ...state,

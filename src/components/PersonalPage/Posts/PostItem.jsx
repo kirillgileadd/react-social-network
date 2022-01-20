@@ -10,6 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {LikesButton} from "../../../UI/LiskesButton";
+import noAvatarSmall from '../../../images/noAvatarSmall.svg'
 
 
 const PostItem = ({id, value, likes, addLike, registeredAt, photos, fullname}) => {
@@ -27,7 +28,7 @@ const PostItem = ({id, value, likes, addLike, registeredAt, photos, fullname}) =
             <Box sx={{display: 'flex', alignItems: 'flex-start', mb: 2}}>
                 <ListItem alignItems="center" sx={{m: 0, p: 0}}>
                     <ListItemAvatar sx={{marginRight: 1}}>
-                        <Avatar sx={{height: 56, width: 56}} alt="Cindy Baker" src={photos.small}/>
+                        <Avatar sx={{height: 56, width: 56}} alt="Cindy Baker" src={photos.small ?? noAvatarSmall}/>
                     </ListItemAvatar>
                     <ListItemText sx={{mt: 0}}>
                         <Typography color={'primary'}>

@@ -2,9 +2,10 @@ import React from 'react';
 import {Avatar, ListItem, ListItemText, Typography} from "@mui/material";
 import {StyledLink} from "../../../UI/Links/StyledLink";
 import {stringAvatar, stringToColor} from "../../../UI/UsersAvatar";
+import {Link} from "react-router-dom";
 
 
-const UsersPersonalPageItem = ({name, photos}) => {
+const UsersPersonalPageItem = ({name, photos, id}) => {
     return (
         <ListItem alignItems={'center'} sx={{
             cursor: 'pointer',
@@ -15,16 +16,16 @@ const UsersPersonalPageItem = ({name, photos}) => {
             flexDirection: 'column',
             justifyContent: 'center'
         }}>
-            {/*<Avatar sx={{width: 56, height: 56, objectFit: 'cover'}} alt="Remy Sharp" src={photoUrl}/>*/}
-            <Avatar {...stringAvatar(name.toUpperCase())} sx={{height: 60, width: 60, bgcolor: stringToColor(name)}} src={photos.large}/>
+            <StyledLink to={`/${id}`}>
+                <Avatar {...stringAvatar(name.toUpperCase())} sx={{height: 60, width: 60, bgcolor: stringToColor(name)}}
+                        src={photos.large}/>
 
-            <ListItemText>
-                <Typography color={'primary'} variant={'body2'} textAlign={'center'} noWrap sx={{width: "56px"}}>
-                    <StyledLink to={`/user/${name}`} sx={{width: '100% !important'}}>
+                <ListItemText>
+                    <Typography color={'primary'} variant={'body2'} textAlign={'center'} noWrap sx={{width: "56px"}}>
                         {name}
-                    </StyledLink>
-                </Typography>
-            </ListItemText>
+                    </Typography>
+                </ListItemText>
+            </StyledLink>
         </ListItem>
     );
 };

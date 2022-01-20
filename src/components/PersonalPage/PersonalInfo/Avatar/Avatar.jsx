@@ -6,6 +6,7 @@ import {styled} from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import UploadIcon from '@mui/icons-material/Upload';
 import {StyledLink} from "../../../../UI/Links/StyledLink";
+import noAvatarLarge from '../../../../images/noAvatarLarge.svg'
 
 
 export const AvatarBox = styled(Box)(({theme}) => ({
@@ -34,7 +35,7 @@ const Avatar = ({photos}) => {
     return (
         <StyledPaper>
             <AvatarBox>
-                <img style={{width: '100%', height: '100%', objectFit: 'cover'}} src={photos.large} alt=""/>
+                <img style={{width: '100%', height: '100%', objectFit: 'cover'}} src={photos.large ?? noAvatarLarge} alt=""/>
                 <AvatarOptions>
                     <List sx={{p: 0, m: 0}}>
                         <ListItem sx={{

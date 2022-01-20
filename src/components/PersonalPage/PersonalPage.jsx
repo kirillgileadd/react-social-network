@@ -14,8 +14,8 @@ import {
     setProfileAction,
     setUserProfileLoadingAction
 } from "../../redux/actions/personalPage";
-import {fetchUsers} from "../../redux/actions/users";
-import { useParams } from 'react-router-dom';
+import {cleanUsersAction, fetchUsers, setUsersAction} from "../../redux/actions/users";
+import {useLocation, useParams} from 'react-router-dom';
 
 
 const PersonalPage = () => {
@@ -24,9 +24,6 @@ const PersonalPage = () => {
     const profile = useSelector(({personalPage}) => personalPage.profile)
     const posts = useSelector(({personalPage}) => personalPage.posts)
     const isLoading = useSelector(({personalPage}) => personalPage.isLoading)
-    const {users} = useSelector(({users}) => users)
-    console.log(isLoading)
-
 
     useEffect(() => {
         dispatch(setUserProfileLoadingAction(false))
@@ -35,10 +32,12 @@ const PersonalPage = () => {
         })
     }, [userId])
 
-
-    useEffect(() => {
-        dispatch(fetchUsers(6))
-    }, [])
+    // useEffect(() => {
+    //     dispatch(fetchUsers(6, 10))
+    //     return function cleanUp() {
+    //         dispatch(cleanUsersAction())
+    //     }
+    // }, [])
 
 
     const addPost = (post, setPostVale) => {
@@ -58,7 +57,7 @@ const PersonalPage = () => {
             <Grid item xs={4}>
                 <Avatar {...profile}/>
                 <PrettyBlock/>
-                <UsersPersonalPage users={users}/>
+                <UsersPersonalPage />
             </Grid>
             <Grid item xs={8}>
                 <PersonalInfo {...profile}/>
