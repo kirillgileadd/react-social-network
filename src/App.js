@@ -6,8 +6,9 @@ import EditProfileInfo from "./components/PersonalPage/PersonalInfo/EditProfileI
 import Users from "./components/Users/Users";
 import Layout from "./Layout";
 import Music from "./components/Music/Music";
-import Login from "./components/Login/Login";
+import LoginPage from "./components/Login/LoginPage";
 import RequireAuth from "./hok/RequireAuth";
+import Login from "./components/Login/Login";
 
 
 function App() {
@@ -28,8 +29,9 @@ function App() {
                     <Route path={'/edit'} element={<EditProfileInfo/>}/>
                     <Route path={'/users'} element={<Users/>}/>
                     <Route path={'/music'} element={<Music/>}/>
+                    <Route path={'/login'} element={<Login/>}/>
                 </Route>
-                <Route path={'/login'} element={<Login/>}/>
+                <Route path={'/loginPage'} element={<LoginPage/>}/>
             </Routes>
 
         </div>

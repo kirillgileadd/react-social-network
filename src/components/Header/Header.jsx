@@ -12,8 +12,9 @@ import avatar from '../../images/img.jpg'
 import logo from '../../images/logo1.svg'
 import axios from "axios";
 import {authUser, setAuthUserDataAction} from "../../redux/actions/auth";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {authAPI, usersAPI} from "../../api/api";
+import {StyledLink} from "../../UI/Links/StyledLink";
 
 const Search = styled('div')(({theme}) => ({
     position: 'relative',
@@ -58,7 +59,7 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
 
 const Header = () => {
     const dispatch = useDispatch()
-
+    const isAuth = useSelector(({auth}) => auth.authData.isAuth)
 
     useEffect(() => {
         dispatch(authUser()) // санка с запросом
@@ -83,17 +84,19 @@ const Header = () => {
                             alignItems: 'center'
                         }}>
                             <Box sx={{display: "flex", alignItems: "center",}}>
-                                <Box sx={{mr: '15px'}}>
+                                <StyledLink sx={{display: 'flex', alignItems: 'center'}} to={!isAuth ? '/loginPage' : '/2'}>
+                                <IconButton sx={{mr: '15px'}}>
                                     <img src={logo} alt=""/>
-                                </Box>
-                                <Typography
-                                    variant="h6"
-                                    noWrap
-                                    component="div"
-                                    sx={{display: {xs: 'none', sm: 'block'}, marginRight: 2}}
-                                >
-                                    GileadSocial
-                                </Typography>
+                                </IconButton>
+                                    <Typography
+                                        variant="h6"
+                                        noWrap
+                                        component="div"
+                                        sx={{display: {xs: 'none', sm: 'block'}, marginRight: 2}}
+                                    >
+                                        GileadSocial
+                                    </Typography>
+                                </StyledLink>
                                 <Search>
                                     <SearchIconWrapper>
                                         <SearchIcon/>

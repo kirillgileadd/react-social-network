@@ -8,13 +8,15 @@ import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import LibraryMusicOutlinedIcon from "@mui/icons-material/LibraryMusicOutlined";
 import {Outlet} from "react-router-dom";
 import Box from "@mui/material/Box";
+import {useSelector} from "react-redux";
 
 const Layout = () => {
+    const isAuth = useSelector(({auth}) => auth.authData.isAuth)
     const navItems = [
-        {name: "Profile", icon: <AccountCircleOutlinedIcon/>, link: '/2'},
-        {name: 'Messages', icon: <ForumOutlinedIcon/>, link: '/messages'},
-        {name: 'Users', icon: <PeopleAltOutlinedIcon/>, link: '/users'},
-        {name: 'Music', icon: <LibraryMusicOutlinedIcon/>, link: '/music'}
+        {name: "Profile", icon: <AccountCircleOutlinedIcon/>, link: '/2', disabled: !isAuth && true},
+        {name: 'Messages', icon: <ForumOutlinedIcon/>, link: '/messages', disabled: !isAuth && true},
+        {name: 'Users', icon: <PeopleAltOutlinedIcon/>, link: '/users', disabled: false},
+        {name: 'Music', icon: <LibraryMusicOutlinedIcon/>, link: '/music', disabled: false}
     ]
 
     return (
