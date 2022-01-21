@@ -8,9 +8,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     changePageNumberAction, cleanUsersAction,
     fetchUsers,
-    followAction,
+    followAction, followSuccess,
     setUsersAction,
-    unfollowAction
+    unfollowAction, unfollowSuccess
 } from "../../redux/actions/users";
 import axios from "axios";
 import Loading from "./Loading";
@@ -34,12 +34,12 @@ const Users = () => {
     }, [currentPage])
 
 
-    const followUser = (userId) => {
-        dispatch(followAction(userId))
+    const followUser = (userId, setLoadingButton) => {
+        dispatch(followSuccess(userId, setLoadingButton))
     }
 
-    const unfollowUser = (userId) => {
-        dispatch(unfollowAction(userId))
+    const unfollowUser = (userId, setLoadingButton) => {
+        dispatch(unfollowSuccess(userId, setLoadingButton))
     }
 
     const handleChangePageNumber = (event, value) => {

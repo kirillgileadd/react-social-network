@@ -4,26 +4,28 @@ import Box from "@mui/material/Box";
 import {StyledPaper} from "../../../UI/StyledPaper";
 import noPhotos from '../../../images/noPhoto.svg'
 
-const itemData = [
-    {
-        img: noPhotos,
-        title: 'Breakfast',
-    },
-    {
-        img: noPhotos,
-        title: 'Burger',
-    },
-    {
-        img: noPhotos,
-        title: 'Camera',
-    },
-    {
-        img: noPhotos,
-        title: 'Camera',
-    },
-]
 
 const Photos = ({photos}) => {
+
+    const itemData = [
+        {
+            img: photos.large ?? noPhotos,
+            title: 'Breakfast',
+        },
+        {
+            img: noPhotos,
+            title: 'Burger',
+        },
+        {
+            img: noPhotos,
+            title: 'Camera',
+        },
+        {
+            img: noPhotos,
+            title: 'Camera',
+        },
+    ]
+
     return (
         <StyledPaper >
             <Box sx={{display: 'flex'}}>

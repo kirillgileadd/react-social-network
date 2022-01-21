@@ -1,4 +1,4 @@
-import axios from "axios";
+import {usersAPI} from "../../api/api";
 
 export const followAction = (userId) => {
     return {
@@ -11,13 +11,6 @@ export const unfollowAction = (userId) => {
         type: 'UNFOLLOW',
         payload: userId
     }
-}
-
-export const fetchUsers = (pageSize, currentPage) => (dispatch) => {
-    dispatch(setLoading(false))
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${String(currentPage)}&count=${(String(pageSize))}`).then(response => {
-        dispatch(setUsersAction(response.data))
-    })
 }
 
 export const setLoading = (value) => ({
@@ -46,3 +39,28 @@ export const changePageNumberAction = (currentPage) => ({
     type: 'CURRENT_PAGE_NUMBER',
     payload: currentPage
 })
+
+export const fetchUsers = (pageSize, currentPage) => (dispatch) => {
+    dispatch(setLoading(false))
+    usersAPI.getUsers(pageSize, currentPage).then(response => {
+        dispatch(setUsersAction(response.data))
+    })
+}
+
+export const unfollowSuccess = (userId, setLoadingButton) => (dispatch) => {
+    usersAPI.unfollow(userId).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(unfollowAction(userId))
+            setLoadingButton(false)
+        }
+    })
+}
+
+export const followSuccess = (userId, setLoadingButton) => (dispatch) => {
+    usersAPI.follow(userId).then(response => {
+        if (response.data.resultCode === 0) {
+            dispatch(followAction(userId))
+            setLoadingButton(false)
+        }
+    })
+}

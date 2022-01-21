@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Avatar, Button, Divider, ListItem, ListItemAvatar, ListItemText} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -6,7 +6,9 @@ import {stringAvatar, stringToColor} from "../../UI/UsersAvatar";
 import {StyledLink} from "../../UI/Links/StyledLink";
 
 
-const UserItem = ({name, photos, status, location, followed, id, followUser, unfollowUser}) => {
+const UserItem = ({name, photos, status, followed, id, followUser, unfollowUser}) => {
+    const [loadingButton, setLoadingButton] = useState(false)
+
     return (
         <>
             <ListItem alignItems="flex-start" sx={{p: 0, width: '100%'}}>
@@ -51,18 +53,28 @@ const UserItem = ({name, photos, status, location, followed, id, followUser, unf
                                 </Typography>
                                 {
                                     followed ? (
-                                        <Button onClick={() => unfollowUser(id)}>
-                                            Unfollow
-                                        </Button>
+                                        <>
+                                            <Button
+                                                disabled={loadingButton}
+                                                onClick={() => {
+                                                    setLoadingButton(true)
+                                                    unfollowUser(id, setLoadingButton)
+                                                }}>
+                                                Unfollow
+                                            </Button>
+                                        </>
                                     ) : (
-                                        <Button onClick={() => followUser(id)}>
+                                        <Button
+                                            disabled={loadingButton}
+                                            onClick={() => {
+                                                setLoadingButton(true)
+                                                followUser(id, setLoadingButton)
+                                            }}>
                                             Follow
                                         </Button>
                                     )
                                 }
-
                             </Box>
-
                         </>
                     }
                 />
@@ -73,3 +85,4 @@ const UserItem = ({name, photos, status, location, followed, id, followUser, unf
 };
 
 export default UserItem;
+``

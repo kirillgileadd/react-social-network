@@ -5,12 +5,13 @@ import UsersPersonalPageItem from "./UsersPersonalPageItem";
 import {cleanUsersAction, fetchUsers, setUsersAction} from "../../../redux/actions/users";
 import {useDispatch} from "react-redux";
 import axios from "axios";
+import {usersAPI} from "../../../api/api";
 
 const UsersPersonalPage = () => {
     const [profileUsers, setProfileUsers] = useState([])
 
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=1&count=6`).then(response => {
+        usersAPI.getUsers(6, 1).then(response => {
             setProfileUsers(response.data.items)
         })
     }, [])

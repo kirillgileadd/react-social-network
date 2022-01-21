@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {styled, alpha} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -10,6 +10,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import {Avatar, Icon} from "@mui/material";
 import avatar from '../../images/img.jpg'
 import logo from '../../images/logo1.svg'
+import axios from "axios";
+import {setAuthUserDataAction} from "../../redux/actions/auth";
+import {useDispatch} from "react-redux";
+import {usersAPI} from "../../api/api";
 
 const Search = styled('div')(({theme}) => ({
     position: 'relative',
@@ -40,7 +44,6 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '100%',
@@ -54,6 +57,16 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
 }));
 
 const Header = () => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        usersAPI.auth().then(response => {
+            if(response.data.resultCode === 0 ) {
+                dispatch(setAuthUserDataAction(response.data.data))
+            }
+        })
+    }, [])
+
     return (
         <div>
             <Box>

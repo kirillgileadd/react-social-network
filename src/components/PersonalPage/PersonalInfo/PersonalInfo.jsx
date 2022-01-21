@@ -19,6 +19,7 @@ export const InfoText = styled(Typography)(({theme}) => ({
 
 const PersonalInfo = ({fullName, aboutMe, contacts, lookingForAJob, lookingForAJobDescription}) => {
     const [showInfo, setShowInfo] = useState(false)
+
     let descriptionItems = [
         {title: 'Looking for a job', content: lookingForAJob},
         {title: 'Looking for a job description', content: lookingForAJobDescription},

@@ -1,3 +1,5 @@
+import {usersAPI} from "../../api/api";
+
 export const addPostAction = (post) => {
     return {
         type: 'ADD_POST',
@@ -23,3 +25,10 @@ export const setUserProfileLoadingAction = (value) => ({
     payload: value
 })
 
+
+export const fetchProfile = (userId) => (dispatch) => {
+    dispatch(setUserProfileLoadingAction(false))
+    usersAPI.getProfile(userId).then(response => {
+        dispatch(setProfileAction(response.data))
+    })
+}

@@ -10,7 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {
     addLikeAction,
-    addPostAction,
+    addPostAction, fetchProfile,
     setProfileAction,
     setUserProfileLoadingAction
 } from "../../redux/actions/personalPage";
@@ -26,10 +26,7 @@ const PersonalPage = () => {
     const isLoading = useSelector(({personalPage}) => personalPage.isLoading)
 
     useEffect(() => {
-        dispatch(setUserProfileLoadingAction(false))
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${String(userId)}`).then(response => {
-            dispatch(setProfileAction(response.data))
-        })
+        dispatch(fetchProfile(userId))
     }, [userId])
 
     // useEffect(() => {
