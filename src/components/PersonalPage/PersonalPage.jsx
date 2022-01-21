@@ -15,7 +15,7 @@ import {
     setUserProfileLoadingAction
 } from "../../redux/actions/personalPage";
 import {cleanUsersAction, fetchUsers, setUsersAction} from "../../redux/actions/users";
-import {useLocation, useParams} from 'react-router-dom';
+import {Navigate, useLocation, useParams} from 'react-router-dom';
 
 
 const PersonalPage = () => {
@@ -24,6 +24,8 @@ const PersonalPage = () => {
     const profile = useSelector(({personalPage}) => personalPage.profile)
     const posts = useSelector(({personalPage}) => personalPage.posts)
     const isLoading = useSelector(({personalPage}) => personalPage.isLoading)
+    const isAuth = useSelector(({auth}) => auth.isAuth)
+    console.log(isAuth)
 
     useEffect(() => {
         dispatch(fetchProfile(userId))
@@ -47,6 +49,8 @@ const PersonalPage = () => {
     const addLike = (post) => {
         dispatch(addLikeAction(post))
     }
+
+    // if(!isAuth && isLoading) return <Navigate to="/login" />
 
     return (
         isLoading &&

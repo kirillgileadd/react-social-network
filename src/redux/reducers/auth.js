@@ -1,9 +1,11 @@
-
 const initialState = {
     email: null,
     id: null,
     login: null,
-    isAuth: false
+    authData: {
+        isAuth: false,
+        AuthLoaded: false
+    }
 }
 
 
@@ -13,7 +15,19 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.payload,
-                isAuth: true
+                authData: {
+                    ...state.authData,
+                    isAuth: true,
+                }
+            }
+        }
+        case 'SET_LOADING_USER_DATA': {
+            return {
+                ...state,
+                authData: {
+                    ...state.authData,
+                    AuthLoaded: true,
+                }
             }
         }
         default:

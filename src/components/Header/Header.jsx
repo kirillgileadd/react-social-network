@@ -11,9 +11,9 @@ import {Avatar, Icon} from "@mui/material";
 import avatar from '../../images/img.jpg'
 import logo from '../../images/logo1.svg'
 import axios from "axios";
-import {setAuthUserDataAction} from "../../redux/actions/auth";
+import {authUser, setAuthUserDataAction} from "../../redux/actions/auth";
 import {useDispatch} from "react-redux";
-import {usersAPI} from "../../api/api";
+import {authAPI, usersAPI} from "../../api/api";
 
 const Search = styled('div')(({theme}) => ({
     position: 'relative',
@@ -59,12 +59,9 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
 const Header = () => {
     const dispatch = useDispatch()
 
+
     useEffect(() => {
-        usersAPI.auth().then(response => {
-            if(response.data.resultCode === 0 ) {
-                dispatch(setAuthUserDataAction(response.data.data))
-            }
-        })
+        dispatch(authUser()) // санка с запросом
     }, [])
 
     return (

@@ -7,6 +7,7 @@ import ForumOutlinedIcon from "@mui/icons-material/ForumOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import LibraryMusicOutlinedIcon from "@mui/icons-material/LibraryMusicOutlined";
 import {Outlet} from "react-router-dom";
+import Box from "@mui/material/Box";
 
 const Layout = () => {
     const navItems = [
@@ -18,13 +19,15 @@ const Layout = () => {
 
     return (
         <>
-            <Header/>
-            <Grid container sx={{maxWidth: '1050px', pt: 1}} spacing={2}>
-                <NavBar navItems={navItems}/>
-                <Grid item xs={10} sx={{mt: '8px'}}>
-                    <Outlet/>
+            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', pt: '65px'}}>
+                <Header/>
+                <Grid container sx={{maxWidth: '1050px', pt: 1}} spacing={2}>
+                    <NavBar navItems={navItems}/>
+                    <Grid item xs={10} sx={{mt: '8px'}}>
+                        <Outlet/>
+                    </Grid>
                 </Grid>
-            </Grid>
+            </Box>
         </>
     )
         ;

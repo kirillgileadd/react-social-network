@@ -1,4 +1,4 @@
-import {usersAPI} from "../../api/api";
+import {profileAPI, usersAPI} from "../../api/api";
 
 export const addPostAction = (post) => {
     return {
@@ -28,7 +28,7 @@ export const setUserProfileLoadingAction = (value) => ({
 
 export const fetchProfile = (userId) => (dispatch) => {
     dispatch(setUserProfileLoadingAction(false))
-    usersAPI.getProfile(userId).then(response => {
+    profileAPI.getProfile(userId).then(response => {
         dispatch(setProfileAction(response.data))
     })
 }
