@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {StyledPaper} from "../../../UI/StyledPaper";
 import Box from "@mui/material/Box";
-import {Button, Divider, Typography} from "@mui/material";
+import {Button, Divider, Popover, Typography} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import MainPersonalInfoItems from "./PersonalInfoItems/MainPersonalInfoItems";
 import PersonalInfoContacts from "./PersonalInfoItems/PersonalInfoContacts";
+import StatusItem from "./PersonalInfoItems/StatusItem";
 
 
 export const InfoBox = styled(Box)(({theme}) => ({
@@ -21,6 +22,7 @@ const PersonalInfo = ({fullName, aboutMe, contacts, lookingForAJob, lookingForAJ
     const [showInfo, setShowInfo] = useState(false)
 
     let descriptionItems = [
+        {title: 'About me', content: aboutMe},
         {title: 'Looking for a job', content: lookingForAJob},
         {title: 'Looking for a job description', content: lookingForAJobDescription},
     ]
@@ -38,18 +40,19 @@ const PersonalInfo = ({fullName, aboutMe, contacts, lookingForAJob, lookingForAJ
         }
     }
 
+
     return (
         <StyledPaper>
-            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+            <Box >
                 <Box>
-                    <Typography variant={'h6'}>
-                        {fullName}
-                    </Typography>
-                    <Typography variant={'body2'}>
-                        {aboutMe || 'there is no description'}
-                    </Typography>
+                    <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+                        <Typography variant={'h6'}>
+                            {fullName}
+                        </Typography>
+                        online
+                    </Box>
+                    <StatusItem />
                 </Box>
-                online
             </Box>
             <Divider sx={{margin: '10px 0'}}/>
             <Box>

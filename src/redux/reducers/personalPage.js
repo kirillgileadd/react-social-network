@@ -11,7 +11,11 @@ const initialState = {
         }
     ],
     profile: null,
-    isLoading: false
+    isLoading: false,
+    status: {
+        isLoading: true,
+        statusValue: ''
+    }
 }
 
 export const personalPageReducer = (state = initialState, action) => {
@@ -59,6 +63,24 @@ export const personalPageReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: action.payload,
+            }
+        }
+        case 'SET_USER_STATUS': {
+            return {
+                ...state,
+                status: {
+                    ...state.status,
+                    statusValue: action.payload
+                },
+            }
+        }
+        case 'SET_LOADING_USER_STATUS': {
+            return {
+                ...state,
+                status: {
+                    ...state.status,
+                    isLoading: action.payload
+                },
             }
         }
         default:

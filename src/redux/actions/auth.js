@@ -18,8 +18,24 @@ export const setLoadingAuthUserDataAction = (value) => {
 export const authUser = () => (dispatch) => {
     authAPI.auth().then(response => {
         if(response.data.resultCode === 0 ) {
-            dispatch(setAuthUserDataAction(response.data.data))
+            dispatch(setAuthUserDataAction({data: response.data.data, isAuth: true}))
         }
         dispatch(setLoadingAuthUserDataAction(true))
+    })
+}
+
+export const login = (email, password, rememberMe) => (dispatch) => {
+    authAPI.login(email, password, rememberMe).then(response => {
+        if(response.data.resultCode === 0 ) {
+            dispatch(authUser())
+        }
+    })
+}
+
+export const logout = () => (dispatch) => {
+    authAPI.logout().then(response => {
+        if(response.data.resultCode === 0 ) {
+            dispatch(setAuthUserDataAction({data: null, isAuth: false}))
+        }
     })
 }

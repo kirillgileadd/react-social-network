@@ -10,7 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {
     addLikeAction,
-    addPostAction, fetchProfile,
+    addPostAction, fetchProfile, fetchStatus, getStatus, getStatusAction,
     setProfileAction,
     setUserProfileLoadingAction
 } from "../../redux/actions/personalPage";
@@ -25,10 +25,10 @@ const PersonalPage = () => {
     const posts = useSelector(({personalPage}) => personalPage.posts)
     const isLoading = useSelector(({personalPage}) => personalPage.isLoading)
     const isAuth = useSelector(({auth}) => auth.isAuth)
-    console.log(isAuth)
 
     useEffect(() => {
         dispatch(fetchProfile(userId))
+        dispatch(getStatus(userId))
     }, [userId])
 
     // useEffect(() => {
@@ -50,10 +50,8 @@ const PersonalPage = () => {
         dispatch(addLikeAction(post))
     }
 
-    // if(!isAuth && isLoading) return <Navigate to="/login" />
-
     return (
-        isLoading &&
+        isLoading && profile &&
         <Grid container spacing={2}>
             <Grid item xs={4}>
                 <Avatar {...profile}/>
@@ -61,7 +59,7 @@ const PersonalPage = () => {
                 <UsersPersonalPage />
             </Grid>
             <Grid item xs={8}>
-                <PersonalInfo {...profile}/>
+                <PersonalInfo {...profile}  />
                 <Photos {...profile}/>
                 <Posts photos={profile.photos}
                        fullname={profile.fullName}

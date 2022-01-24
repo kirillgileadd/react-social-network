@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {styled, alpha} from '@mui/material/styles';
+import {alpha, styled} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,14 +7,11 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import {Avatar, Icon} from "@mui/material";
-import avatar from '../../images/img.jpg'
 import logo from '../../images/logo1.svg'
-import axios from "axios";
-import {authUser, setAuthUserDataAction} from "../../redux/actions/auth";
+import {authUser, logout} from "../../redux/actions/auth";
 import {useDispatch, useSelector} from "react-redux";
-import {authAPI, usersAPI} from "../../api/api";
 import {StyledLink} from "../../UI/Links/StyledLink";
+import HeaderIconMenu from "./HeaderIconMenu";
 
 const Search = styled('div')(({theme}) => ({
     position: 'relative',
@@ -65,6 +62,10 @@ const Header = () => {
         dispatch(authUser()) // санка с запросом
     }, [])
 
+    const logoutUser = () => {
+        dispatch(logout())
+    }
+
     return (
         <div>
             <Box>
@@ -84,10 +85,11 @@ const Header = () => {
                             alignItems: 'center'
                         }}>
                             <Box sx={{display: "flex", alignItems: "center",}}>
-                                <StyledLink sx={{display: 'flex', alignItems: 'center'}} to={!isAuth ? '/loginPage' : '/2'}>
-                                <IconButton sx={{mr: '15px'}}>
-                                    <img src={logo} alt=""/>
-                                </IconButton>
+                                <StyledLink sx={{display: 'flex', alignItems: 'center'}}
+                                            to={!isAuth ? '/loginPage' : '/21925'}>
+                                    <IconButton sx={{mr: '15px'}}>
+                                        <img src={logo} alt=""/>
+                                    </IconButton>
                                     <Typography
                                         variant="h6"
                                         noWrap
@@ -107,7 +109,21 @@ const Header = () => {
                                     />
                                 </Search>
                             </Box>
-                            <Avatar alt="Remy Sharp" src={avatar}/>
+                            <Box>
+                                {
+                                    isAuth ? (
+                                            <HeaderIconMenu logout={logoutUser}/>
+                                        )
+                                        : (
+                                            <StyledLink to={'/login'}>
+                                                <Typography>
+                                                    Login
+                                                </Typography>
+                                            </StyledLink>
+                                        )
+                                }
+
+                            </Box>
                         </Box>
                     </Toolbar>
                 </AppBar>

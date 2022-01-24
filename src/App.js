@@ -16,7 +16,7 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path={'/'} element={<Layout/>}>
-                    <Route index element={<Navigate to="/2" replace/>}/>
+                    <Route index element={<Navigate to="/21925" replace/>}/>
                     <Route path={'/:userId'} element={
                         <RequireAuth>
                             <PersonalPage/>

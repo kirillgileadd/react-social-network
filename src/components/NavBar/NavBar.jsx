@@ -22,8 +22,8 @@ export default function NavBar({navItems}) {
                 }}>
                     {
                         navItems.map((item) =>
-                            <ListItemButton disabled={item.disabled}>
-                                <SlyledNavLink sx={{display: 'flex', alignItems: 'center'}} to={item.link} key={item.name}>
+                            <ListItemButton disabled={item.disabled} sx={{p: 0}}>
+                                <SlyledNavLink sx={{display: 'flex', alignItems: 'center', height: '100%', width: '100%', p: 1}} to={item.link} key={item.name}>
                                     <ListItemIcon>
                                         {item.icon}
                                     </ListItemIcon>

@@ -25,6 +25,16 @@ export const setUserProfileLoadingAction = (value) => ({
     payload: value
 })
 
+export const getStatusAction = (status) => ({
+    type: 'SET_USER_STATUS',
+    payload: status
+})
+
+export const setLoadingStatusAction = (value) => ({
+    type: 'SET_LOADING_USER_STATUS',
+    payload: value
+})
+
 
 export const fetchProfile = (userId) => (dispatch) => {
     dispatch(setUserProfileLoadingAction(false))
@@ -32,3 +42,21 @@ export const fetchProfile = (userId) => (dispatch) => {
         dispatch(setProfileAction(response.data))
     })
 }
+
+export const getStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId).then(response => {
+        dispatch(getStatusAction(response.data))
+    })
+}
+
+export const putStatus = (status,  setAnchorEl) => (dispatch) => {
+    dispatch(setLoadingStatusAction(false))
+    profileAPI.putStatus(status).then(response => {
+        if(response.data.resultCode === 0) {
+            dispatch(getStatusAction(status))
+            dispatch(setLoadingStatusAction(true))
+            setAnchorEl(null)
+        }
+    })
+}
+
