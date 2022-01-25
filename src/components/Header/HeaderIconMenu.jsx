@@ -2,8 +2,6 @@ import React from 'react';
 import {Avatar, Menu, MenuItem, Tooltip} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import {logout} from "../../redux/actions/auth";
-import {useDispatch} from "react-redux";
 
 const HeaderIconMenu = ({logout}) => {
     const settings = ['Logout'];

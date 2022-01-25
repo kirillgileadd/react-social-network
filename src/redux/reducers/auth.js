@@ -4,7 +4,6 @@ const initialState = {
     login: null,
     authData: {
         isAuth: false,
-        AuthLoaded: false
     }
 }
 
@@ -18,15 +17,6 @@ export const authReducer = (state = initialState, action) => {
                 authData: {
                     ...state.authData,
                     isAuth: action.payload.isAuth,
-                }
-            }
-        }
-        case 'SET_LOADING_USER_DATA': {
-            return {
-                ...state,
-                authData: {
-                    ...state.authData,
-                    AuthLoaded: true,
                 }
             }
         }

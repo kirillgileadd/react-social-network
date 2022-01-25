@@ -18,9 +18,8 @@ export const InfoText = styled(Typography)(({theme}) => ({
     width: '250px'
 }));
 
-const PersonalInfo = ({fullName, aboutMe, contacts, lookingForAJob, lookingForAJobDescription}) => {
+const PersonalInfo = ({fullName, aboutMe, contacts, lookingForAJob, lookingForAJobDescription, currentUser}) => {
     const [showInfo, setShowInfo] = useState(false)
-
     let descriptionItems = [
         {title: 'About me', content: aboutMe},
         {title: 'Looking for a job', content: lookingForAJob},
@@ -51,7 +50,7 @@ const PersonalInfo = ({fullName, aboutMe, contacts, lookingForAJob, lookingForAJ
                         </Typography>
                         online
                     </Box>
-                    <StatusItem />
+                    <StatusItem currentUser={currentUser}/>
                 </Box>
             </Box>
             <Divider sx={{margin: '10px 0'}}/>
@@ -62,7 +61,9 @@ const PersonalInfo = ({fullName, aboutMe, contacts, lookingForAJob, lookingForAJ
                             <Box>
                                 <MainPersonalInfoItems descriptionItems={descriptionItems}/>
                                 <Divider textAlign={'left'}>Contacts</Divider>
-                                <PersonalInfoContacts contactsItems={contactsItems}/>
+                                {
+                                    Object.values(contacts).filter((el) => el !== null).length ?  <PersonalInfoContacts contactsItems={contactsItems}/> : <Typography>The user has not added his contacts yet</Typography>
+                                }
                             </Box>
                             <Button fullWidth onClick={handleShowInfo}>
                                 <Typography sx={{textTransform: 'none'}}>Hide detail information</Typography>

@@ -12,7 +12,7 @@ const MainPersonalInfoItems = ({descriptionItems}) => {
                         {item.title}:
                     </InfoText>
                     <InfoText sx={{color: "text.secondary", ml: 4}}>
-                        {typeof item.content === 'boolean' ? item.content ? 'Да' : 'Нет' : item.content }
+                        {typeof item.content === 'boolean' ? item.content ? 'Yes' : 'No' : item.content ? item.content : 'Not filled in yet'}
                     </InfoText>
                 </InfoBox>
             </>)

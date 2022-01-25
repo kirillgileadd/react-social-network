@@ -12,8 +12,9 @@ import {useSelector} from "react-redux";
 
 const Layout = () => {
     const isAuth = useSelector(({auth}) => auth.authData.isAuth)
+    const userId = useSelector(({auth}) => auth.id)
     const navItems = [
-        {name: "Profile", icon: <AccountCircleOutlinedIcon/>, link: '/21925', disabled: !isAuth && true},
+        {name: "Profile", icon: <AccountCircleOutlinedIcon/>, link: `/${userId}`, disabled: !isAuth && true},
         {name: 'Messages', icon: <ForumOutlinedIcon/>, link: '/messages', disabled: !isAuth && true},
         {name: 'Users', icon: <PeopleAltOutlinedIcon/>, link: '/users', disabled: false},
         {name: 'Music', icon: <LibraryMusicOutlinedIcon/>, link: '/music', disabled: false}

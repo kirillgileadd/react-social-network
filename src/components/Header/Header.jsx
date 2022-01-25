@@ -57,6 +57,7 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
 const Header = () => {
     const dispatch = useDispatch()
     const isAuth = useSelector(({auth}) => auth.authData.isAuth)
+    const userId = useSelector(({auth}) => auth.id)
 
     useEffect(() => {
         dispatch(authUser()) // санка с запросом
@@ -86,7 +87,7 @@ const Header = () => {
                         }}>
                             <Box sx={{display: "flex", alignItems: "center",}}>
                                 <StyledLink sx={{display: 'flex', alignItems: 'center'}}
-                                            to={!isAuth ? '/loginPage' : '/21925'}>
+                                            to={!isAuth ? '/loginPage' : `/${userId}`}>
                                     <IconButton sx={{mr: '15px'}}>
                                         <img src={logo} alt=""/>
                                     </IconButton>

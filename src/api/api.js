@@ -3,7 +3,7 @@ import axios from "axios";
 const instance = axios.create({
     withCredentials: true,
     headers: {
-        // "API-KEY": '09ac5eea-6ade-41a8-8070-2ec021213784' sokil
+        // "API-KEY": '09ac5eea-6ade-41a8-8070-2ec021213784' // sokil
         "API-KEY": 'f11fe5e8-5f83-4b9e-a227-00d1e35aae93'
     },
     baseURL: 'https://social-network.samuraijs.com/api/1.0/'
@@ -43,4 +43,7 @@ export const profileAPI = {
     putStatus(status) {
         return instance.put(`profile/status`, {status: status})
     },
+    isFollow(userId) {
+        return instance.get(`/follow/${userId}`)
+    }
 }

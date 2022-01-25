@@ -8,19 +8,19 @@ export const setAuthUserDataAction = (data) => {
     }
 }
 
-export const setLoadingAuthUserDataAction = (value) => {
+
+export const initializeAction = (value) => {
     return {
-        type: 'SET_LOADING_USER_DATA',
+        type: 'INITIALIZE_APP',
         payload: value
     }
 }
 
 export const authUser = () => (dispatch) => {
-    authAPI.auth().then(response => {
+    return authAPI.auth().then(response => {
         if(response.data.resultCode === 0 ) {
             dispatch(setAuthUserDataAction({data: response.data.data, isAuth: true}))
         }
-        dispatch(setLoadingAuthUserDataAction(true))
     })
 }
 
@@ -28,6 +28,8 @@ export const login = (email, password, rememberMe) => (dispatch) => {
     authAPI.login(email, password, rememberMe).then(response => {
         if(response.data.resultCode === 0 ) {
             dispatch(authUser())
+        } else {
+            alert('password or login incorrect')
         }
     })
 }
@@ -39,3 +41,12 @@ export const logout = () => (dispatch) => {
         }
     })
 }
+
+
+export const initialize = () => (dispatch) => {
+   let promise = dispatch(authUser())
+    promise.then(() => {
+        dispatch(initializeAction(true))
+    })
+}
+

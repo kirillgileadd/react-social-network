@@ -1,29 +1,23 @@
-import React, {useEffect} from 'react';
-import {useForm, Controller } from "react-hook-form";
+import React from 'react';
+import {useForm} from "react-hook-form";
 import {Box, Button, Checkbox, FormControlLabel, TextField} from "@mui/material";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
 
 const LoginForm = ({onSubmit}) => {
     const schema = yup.object({
-        email: yup.string().email(' ').required(''),
+        email: yup.string().email('Your email is incorrect').required(''),
         rememberMe: yup.boolean().default(false),
         password: yup.string()
             .when('email', {
                 is: value => value.includes('@'),
-                then: yup.string().min(5),
+                then: yup.string().min(3),
             })
     }).required();
 
     const {handleSubmit, register, formState, formState: {errors}, reset} = useForm({
         resolver: yupResolver(schema)
     });
-
-    useEffect(() => {
-        if (formState.isSubmitSuccessful) {
-            reset();
-        }
-    }, [formState, reset]);
 
     return (
         <Box
@@ -59,12 +53,6 @@ const LoginForm = ({onSubmit}) => {
             <Box >
                 <Button onClick={handleSubmit(onSubmit)} variant="contained" color="primary">
                     Login
-                </Button>
-                <Button className='button'
-                        variant="outlined"
-                        onClick={() => reset()}
-                >
-                    Clear
                 </Button>
             </Box>
         </Box>

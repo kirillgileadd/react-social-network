@@ -31,7 +31,7 @@ const PostItem = ({id, value, likes, addLike, registeredAt, photos, fullname}) =
                         <Avatar sx={{height: 56, width: 56}} alt="Cindy Baker" src={photos.small ?? noAvatarSmall}/>
                     </ListItemAvatar>
                     <ListItemText sx={{mt: 0}}>
-                        <Typography color={'primary'}>
+                        <Typography color={'primary'} fontWeight={'bold'}>
                             {fullname.split(' ')[0]}
                         </Typography>
                         <Typography

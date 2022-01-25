@@ -22,14 +22,14 @@ export const StatusPopover = styled(Popover)(({theme}) => ({
 }))
 
 
-const StatusItem = () => {
+const StatusItem = ({currentUser}) => {
     const dispatch = useDispatch()
     const status = useSelector(({personalPage}) => personalPage.status)
     const [anchorEl, setAnchorEl] = useState(null);
     const [statusValue, setStatusValue] = useState(status)
 
     useEffect(() => {
-        if(statusValue !== status.statusValue) {
+        if (statusValue !== status.statusValue) {
             setStatusValue(status.statusValue)
         }
     }, [status.statusValue, anchorEl])
@@ -44,7 +44,7 @@ const StatusItem = () => {
     };
 
     const handlePopoverClose = () => {
-        dispatch(putStatus(statusValue,  setAnchorEl))
+        dispatch(putStatus(statusValue, setAnchorEl))
     };
 
     const open = Boolean(anchorEl);
@@ -57,13 +57,17 @@ const StatusItem = () => {
                 width: '100% !important'
             }
         }}>
-            <StatusButton
-                aria-haspopup="true"
-                onClick={handlePopoverOpen}
-                variant={"text.body2"}
-            >
-                {status.statusValue || 'Change Status'}
-            </StatusButton>
+            {
+                currentUser ? <StatusButton
+                        aria-haspopup="true"
+                        onClick={handlePopoverOpen}
+                        variant={"text.body2"}
+                    >
+                        {status.statusValue || 'Change Status'}
+                    </StatusButton> :
+                    <Typography>{status.statusValue || 'There is no status'}</Typography>
+            }
+
             <StatusPopover
                 disableAutoFocus
                 disablePortal
@@ -81,7 +85,7 @@ const StatusItem = () => {
                     horizontal: 'left',
                 }}
             >
-                <StyledPaper sx={{display: 'flex', flexDirection: 'column', mb: 0, width: '300px' }}>
+                <StyledPaper sx={{display: 'flex', flexDirection: 'column', mb: 0, width: '300px'}}>
                     <TextField
                         value={statusValue}
                         onChange={handleStatusValue}

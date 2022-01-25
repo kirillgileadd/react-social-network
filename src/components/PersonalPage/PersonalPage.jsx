@@ -7,37 +7,25 @@ import PersonalInfo from "./PersonalInfo/PersonalInfo";
 import UsersPersonalPage from "./UsersPersonalPage/UsersPersonalPage";
 import PrettyBlock from "./PrettyBlock";
 import {useDispatch, useSelector} from "react-redux";
-import axios from "axios";
-import {
-    addLikeAction,
-    addPostAction, fetchProfile, fetchStatus, getStatus, getStatusAction,
-    setProfileAction,
-    setUserProfileLoadingAction
-} from "../../redux/actions/personalPage";
-import {cleanUsersAction, fetchUsers, setUsersAction} from "../../redux/actions/users";
-import {Navigate, useLocation, useParams} from 'react-router-dom';
+import {addLikeAction, addPostAction, fetchProfile, getStatus} from "../../redux/actions/personalPage";
+import {Navigate, useParams} from 'react-router-dom';
 
 
 const PersonalPage = () => {
     const dispatch = useDispatch()
-    let { userId } = useParams();
+    let { userId } = useParams()
     const profile = useSelector(({personalPage}) => personalPage.profile)
     const posts = useSelector(({personalPage}) => personalPage.posts)
     const isLoading = useSelector(({personalPage}) => personalPage.isLoading)
     const isAuth = useSelector(({auth}) => auth.isAuth)
+    const id = useSelector(({auth}) => auth.id)
+
+    let currentUser = userId === String(id)
 
     useEffect(() => {
         dispatch(fetchProfile(userId))
         dispatch(getStatus(userId))
     }, [userId])
-
-    // useEffect(() => {
-    //     dispatch(fetchUsers(6, 10))
-    //     return function cleanUp() {
-    //         dispatch(cleanUsersAction())
-    //     }
-    // }, [])
-
 
     const addPost = (post, setPostVale) => {
         if (post) {
@@ -50,16 +38,17 @@ const PersonalPage = () => {
         dispatch(addLikeAction(post))
     }
 
+
     return (
         isLoading && profile &&
         <Grid container spacing={2}>
             <Grid item xs={4}>
-                <Avatar {...profile}/>
+                <Avatar {...profile} currentUser={currentUser} />
                 <PrettyBlock/>
                 <UsersPersonalPage />
             </Grid>
             <Grid item xs={8}>
-                <PersonalInfo {...profile}  />
+                <PersonalInfo {...profile} currentUser={currentUser} />
                 <Photos {...profile}/>
                 <Posts photos={profile.photos}
                        fullname={profile.fullName}

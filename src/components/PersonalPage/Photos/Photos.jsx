@@ -30,7 +30,7 @@ const Photos = ({photos}) => {
         <StyledPaper >
             <Box sx={{display: 'flex'}}>
                 <Typography variant={'subtitle1'} sx={{mr: 1, mb: 1}}>
-                    My photos 4
+                   Photos
                 </Typography>
             </Box>
             <ImageList sx={{ maxWidth: 540, m: 0, flexWrap: 'wrap'}} cols={4} rowHeight={135}>

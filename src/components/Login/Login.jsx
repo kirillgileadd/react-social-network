@@ -9,13 +9,13 @@ import {Navigate} from 'react-router-dom'
 const Login = () => {
     const dispatch = useDispatch()
     const isAuth = useSelector(({auth}) => auth.authData.isAuth)
-    const authLoaded = useSelector(({auth}) => auth.authData.AuthLoaded)
+    const userId = useSelector(({auth}) => auth.id)
     const onSubmit = ({email, password, rememberMe}) => {
         dispatch(login(email, password, rememberMe))
     }
 
-    if (authLoaded && isAuth) {
-        return <Navigate to={'/21925'}/>
+    if (isAuth) {
+        return <Navigate to={`/${userId}`}/>
     }
 
     return (
