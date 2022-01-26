@@ -29,10 +29,8 @@ const StatusItem = ({currentUser}) => {
     const [statusValue, setStatusValue] = useState(status)
 
     useEffect(() => {
-        if (statusValue !== status.statusValue) {
             setStatusValue(status.statusValue)
-        }
-    }, [status.statusValue, anchorEl])
+    }, [status.statusValue])
 
     const handleStatusValue = (e) => {
         let {value} = e.target

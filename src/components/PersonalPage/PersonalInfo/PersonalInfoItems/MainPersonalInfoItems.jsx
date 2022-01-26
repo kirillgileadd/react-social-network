@@ -7,7 +7,7 @@ const MainPersonalInfoItems = ({descriptionItems}) => {
         <List>
         {
             descriptionItems.map(item => <>
-                <InfoBox>
+                <InfoBox >
                     <InfoText>
                         {item.title}:
                     </InfoText>

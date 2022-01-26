@@ -11,7 +11,7 @@ const UsersPersonalPage = () => {
     const [profileUsers, setProfileUsers] = useState([])
 
     useEffect(() => {
-        usersAPI.getUsers(6, 1).then(response => {
+        usersAPI.getUsers(6, 1, '').then(response => {
             setProfileUsers(response.data.items)
         })
     }, [])

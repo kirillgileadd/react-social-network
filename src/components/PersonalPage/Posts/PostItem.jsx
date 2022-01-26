@@ -14,7 +14,6 @@ import noAvatarSmall from '../../../images/noAvatarSmall.svg'
 
 
 const PostItem = ({id, value, likes, addLike, registeredAt, photos, fullname}) => {
-
     const newLikesCount = () => {
         let post = {
             id: id,

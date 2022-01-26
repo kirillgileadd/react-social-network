@@ -15,7 +15,8 @@ export const InfoBox = styled(Box)(({theme}) => ({
 }));
 
 export const InfoText = styled(Typography)(({theme}) => ({
-    width: '250px'
+    width: '250px',
+    overflow: 'hidden'
 }));
 
 const PersonalInfo = ({fullName, aboutMe, contacts, lookingForAJob, lookingForAJobDescription, currentUser}) => {

@@ -4,7 +4,7 @@ const instance = axios.create({
     withCredentials: true,
     headers: {
         // "API-KEY": '09ac5eea-6ade-41a8-8070-2ec021213784' // sokil
-        "API-KEY": 'f11fe5e8-5f83-4b9e-a227-00d1e35aae93'
+        "API-KEY": '4ebd39ab-09b4-42db-8bc5-0c1a6481ce32'
     },
     baseURL: 'https://social-network.samuraijs.com/api/1.0/'
 })
@@ -19,6 +19,9 @@ export const usersAPI = {
     follow(userId) {
         return instance.post(`follow/${userId}`)
     },
+    searchUsers(pageSize = 5, currentPage = 1, searchValue) {
+        return instance.get(`users?page=${currentPage}&count=${pageSize}&term=${searchValue}`)
+    }
 }
 
 export const authAPI = {

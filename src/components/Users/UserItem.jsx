@@ -4,9 +4,11 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import {stringAvatar, stringToColor} from "../../UI/UsersAvatar";
 import {StyledLink} from "../../UI/Links/StyledLink";
+import {useSelector} from "react-redux";
 
 
 const UserItem = ({name, photos, status, followed, id, followUser, unfollowUser}) => {
+    const currentUserId = useSelector(({auth}) => auth.id)
     const [loadingButton, setLoadingButton] = useState(false)
 
     return (
@@ -52,27 +54,29 @@ const UserItem = ({name, photos, status, followed, id, followUser, unfollowUser}
                                     White a message
                                 </Typography>
                                 {
-                                    followed ? (
-                                        <>
+                                    currentUserId === id ?
+                                        <Button><StyledLink to={`/${currentUserId}`}>Profile</StyledLink></Button> :
+                                        followed ? (
+                                            <>
+                                                <Button
+                                                    disabled={loadingButton}
+                                                    onClick={() => {
+                                                        setLoadingButton(true)
+                                                        unfollowUser(id, setLoadingButton)
+                                                    }}>
+                                                    Unfollow
+                                                </Button>
+                                            </>
+                                        ) : (
                                             <Button
                                                 disabled={loadingButton}
                                                 onClick={() => {
                                                     setLoadingButton(true)
-                                                    unfollowUser(id, setLoadingButton)
+                                                    followUser(id, setLoadingButton)
                                                 }}>
-                                                Unfollow
+                                                Follow
                                             </Button>
-                                        </>
-                                    ) : (
-                                        <Button
-                                            disabled={loadingButton}
-                                            onClick={() => {
-                                                setLoadingButton(true)
-                                                followUser(id, setLoadingButton)
-                                            }}>
-                                            Follow
-                                        </Button>
-                                    )
+                                        )
                                 }
                             </Box>
                         </>
@@ -85,4 +89,3 @@ const UserItem = ({name, photos, status, followed, id, followUser, unfollowUser}
 };
 
 export default UserItem;
-``

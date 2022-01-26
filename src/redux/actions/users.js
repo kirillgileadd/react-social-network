@@ -47,6 +47,21 @@ export const fetchUsers = (pageSize, currentPage) => (dispatch) => {
     })
 }
 
+export const searchUsers = (pageSize, currentPage, debouncedSearchTerm) => (dispatch) => {
+    if (debouncedSearchTerm) {
+        dispatch(setLoading(false))
+        usersAPI.searchUsers(pageSize, currentPage, debouncedSearchTerm).then(results => {
+            if(Math.ceil(results.data.totalCount / pageSize) < currentPage) {
+                dispatch(changePageNumberAction(1))
+            }
+            dispatch(setLoading(true))
+            dispatch(setUsersAction(results.data))
+        });
+    } else {
+        dispatch(fetchUsers(pageSize, currentPage))
+    }
+}
+
 export const unfollowSuccess = (userId, setLoadingButton) => (dispatch) => {
     usersAPI.unfollow(userId).then(response => {
         if (response.data.resultCode === 0) {

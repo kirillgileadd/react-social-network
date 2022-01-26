@@ -37,7 +37,11 @@ function App() {
                         <RequireAuth>
                             <Messages/>
                         </RequireAuth>}/>
-                    <Route path={'/edit'} element={<EditProfileInfo/>}/>
+                    <Route path={'/edit'} element={
+                        <RequireAuth>
+                            <EditProfileInfo/>
+                        </RequireAuth>
+                    }/>
                     <Route path={'/users'} element={<Users/>}/>
                     <Route path={'/music'} element={<Music/>}/>
                     <Route path={'/login'} element={<Login/>}/>

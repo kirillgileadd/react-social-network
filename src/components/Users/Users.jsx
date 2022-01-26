@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {StyledPaper} from "../../UI/StyledPaper";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
@@ -8,15 +8,17 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     changePageNumberAction, cleanUsersAction,
     fetchUsers,
-    followAction, followSuccess,
-    setUsersAction,
-    unfollowAction, unfollowSuccess
+    followSuccess,
+    searchUsers,
+    unfollowSuccess
 } from "../../redux/actions/users";
-import axios from "axios";
 import Loading from "../../Loading";
-import {useLocation} from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
+import useDebounce from "../../hooks/useDebounce";
+import Typography from "@mui/material/Typography";
+import CloseIcon from '@mui/icons-material/Close';
+import InviteNewUsers from "./InviteNewUsers";
 
 
 const Users = () => {
@@ -24,8 +26,9 @@ const Users = () => {
     const {isLoading} = useSelector(({users}) => users)
     const {users} = useSelector(({users}) => users)
     const {currentPage, pageSize, totalCount} = useSelector(({users}) => users)
-    console.log(useLocation())
+    const [searchValue, setSearchValue] = useState('')
 
+    const debouncedSearchTerm = useDebounce(searchValue, 500);
     let pageCount = Math.ceil(totalCount / pageSize)
 
     useEffect(() => {
@@ -33,8 +36,11 @@ const Users = () => {
         return function cleanUp() {
             dispatch(cleanUsersAction())
         }
-    }, [currentPage])
+    }, [])
 
+    useEffect(() => {
+        dispatch(searchUsers(pageSize, currentPage, debouncedSearchTerm))
+    }, [debouncedSearchTerm, currentPage])
 
     const followUser = (userId, setLoadingButton) => {
         dispatch(followSuccess(userId, setLoadingButton))
@@ -48,6 +54,10 @@ const Users = () => {
         dispatch(changePageNumberAction(value))
     }
 
+    const handleChangeInputValue = (e) => {
+        let {value} = e.target
+        setSearchValue(value)
+    }
 
     return (
         <Box>
@@ -61,9 +71,7 @@ const Users = () => {
                     }}>
                         <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
                             Tabs
-                            <Button sx={{boxShadow: "0", '&:hover': {boxShadow: '0'}}} variant={'contained'}>
-                                Invite new Users
-                            </Button>
+                           <InviteNewUsers/>
                         </Box>
                     </Box>
                     <StyledPaper sx={{borderRadius: 0, boxShadow: 0, mb: 0, p: 1}}>
@@ -75,10 +83,17 @@ const Users = () => {
                                 <SearchIcon/>
                             </IconButton>
                             <InputBase
+                                value={searchValue}
+                                onChange={handleChangeInputValue}
                                 sx={{ml: 1, flex: 1}}
                                 placeholder="Search"
                                 inputProps={{'aria-label': 'search'}}
                             />
+                            <IconButton>
+                                <CloseIcon onClick={() => {
+                                    setSearchValue('')
+                                }}/>
+                            </IconButton>
                         </Box>
                     </StyledPaper>
                     <StyledPaper sx={{borderRadius: '0px 0px 5px 5px'}}>

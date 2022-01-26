@@ -1,10 +1,14 @@
 import React from 'react';
+import {StyledPaper} from "../../../UI/StyledPaper";
+import Box from "@mui/material/Box";
 
 const EditProfileInfo = () => {
     return (
-        <div>
-            
-        </div>
+        <StyledPaper>
+            <Box>
+                EDIT
+            </Box>
+        </StyledPaper>
     );
 };
 

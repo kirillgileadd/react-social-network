@@ -9,15 +9,13 @@ import {ThemeProvider} from "@mui/material";
 import {theme} from "./theme/theme";
 
 ReactDOM.render(
-
-            <ThemeProvider theme={theme}>
-                <BrowserRouter>
-                    <Provider store={store}>
-                    <App/>
-                    </Provider>
-                </BrowserRouter>
-            </ThemeProvider>,
-
+    <ThemeProvider theme={theme}>
+        <BrowserRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>
+    </ThemeProvider>,
     document.getElementById('root')
 );
 
