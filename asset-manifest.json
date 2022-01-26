@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/react-social-network/static/css/main.e8189927.css",
+    "main.js": "/react-social-network/static/js/main.cf660e90.js",
+    "static/media/loginBG.jpg": "/react-social-network/static/media/loginBG.c0c7280047ce0bc18ace.jpg",
+    "static/media/img.jpg": "/react-social-network/static/media/img.46eae3df8dabb22f76f2.jpg",
+    "static/media/loginLogo.svg": "/react-social-network/static/media/loginLogo.44716256b10b0741079bd9fd07f4f9ec.svg",
+    "static/media/logo1.svg": "/react-social-network/static/media/logo1.bb091bd95c833d2f68ad6e82cee2f033.svg",
+    "index.html": "/react-social-network/index.html",
+    "static/media/noAvatarLarge.svg": "/react-social-network/static/media/noAvatarLarge.883ad1a9489d94867444012b6325dd5b.svg",
+    "static/media/noAvatarSmall.svg": "/react-social-network/static/media/noAvatarSmall.e214edc06a5cf46804a6a73212ba93a9.svg",
+    "static/media/noPhoto.svg": "/react-social-network/static/media/noPhoto.eea795c6e0dd13ad45fd839a244e7dc4.svg",
+    "main.e8189927.css.map": "/react-social-network/static/css/main.e8189927.css.map",
+    "main.cf660e90.js.map": "/react-social-network/static/js/main.cf660e90.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e8189927.css",
+    "static/js/main.cf660e90.js"
+  ]
+}
