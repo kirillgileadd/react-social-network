@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {alpha, styled} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import logo from '../../images/logo1.svg'
-import {authUser, logout} from "../../redux/actions/auth";
+import {logout} from "../../redux/actions/auth";
 import {useDispatch, useSelector} from "react-redux";
 import {StyledLink} from "../../UI/Links/StyledLink";
 import HeaderIconMenu from "./HeaderIconMenu";
@@ -57,11 +57,12 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
 const Header = () => {
     const dispatch = useDispatch()
     const isAuth = useSelector(({auth}) => auth.authData.isAuth)
-    const userId = useSelector(({auth}) => auth.id)
+    const ownerId = useSelector(({auth}) => auth.id)
+    const login = useSelector(({auth}) => auth.login)
+    const profile = useSelector(({personalPage}) => personalPage.profile)
 
-    useEffect(() => {
-        dispatch(authUser()) // санка с запросом
-    }, [])
+    const currentUser = profile && profile.id === ownerId
+
 
     const logoutUser = () => {
         dispatch(logout())
@@ -87,7 +88,7 @@ const Header = () => {
                         }}>
                             <Box sx={{display: "flex", alignItems: "center",}}>
                                 <StyledLink sx={{display: 'flex', alignItems: 'center'}}
-                                            to={!isAuth ? '/loginPage' : `/${userId}`}>
+                                            to={!isAuth ? '/loginPage' : `/${ownerId}`}>
                                     <IconButton sx={{mr: '15px'}}>
                                         <img src={logo} alt=""/>
                                     </IconButton>
@@ -113,7 +114,7 @@ const Header = () => {
                             <Box>
                                 {
                                     isAuth ? (
-                                            <HeaderIconMenu logout={logoutUser}/>
+                                            <HeaderIconMenu logout={logoutUser} ownerId={ownerId} profile={profile} ownerName={login } currentUser={currentUser} />
                                         )
                                         : (
                                             <StyledLink to={'/login'}>
@@ -123,7 +124,6 @@ const Header = () => {
                                             </StyledLink>
                                         )
                                 }
-
                             </Box>
                         </Box>
                     </Toolbar>

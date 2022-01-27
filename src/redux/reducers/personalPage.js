@@ -83,6 +83,15 @@ export const personalPageReducer = (state = initialState, action) => {
                 },
             }
         }
+        case 'SET_USER_PHOTO': {
+            return {
+                ...state,
+                profile: {
+                    ...state.profile,
+                    photos: action.payload
+                }
+            }
+        }
         default:
             return state
     }

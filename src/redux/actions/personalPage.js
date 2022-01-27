@@ -29,6 +29,10 @@ export const getStatusAction = (status) => ({
     type: 'SET_USER_STATUS',
     payload: status
 })
+export const getPhotosAction = (photos) => ({
+    type: 'SET_USER_PHOTO',
+    payload: photos
+})
 
 export const setLoadingStatusAction = (value) => ({
     type: 'SET_LOADING_USER_STATUS',
@@ -46,6 +50,14 @@ export const fetchProfile = (userId) => (dispatch) => {
 export const getStatus = (userId) => (dispatch) => {
     profileAPI.getStatus(userId).then(response => {
         dispatch(getStatusAction(response.data))
+    })
+}
+
+export const onSavePhoto = (photo) => (dispatch) => {
+    profileAPI.savePhoto(photo).then(response => {
+        if(response.data.resultCode === 0) {
+            dispatch(getPhotosAction(response.data.data.photos))
+        }
     })
 }
 

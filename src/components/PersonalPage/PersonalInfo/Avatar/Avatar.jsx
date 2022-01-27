@@ -35,7 +35,7 @@ export const AvatarOptions = styled('div')(({theme}) => ({
 }));
 
 
-const Avatar = ({photos, currentUser}) => {
+const Avatar = ({photos, currentUser, savePhoto}) => {
     const dispatch = useDispatch()
     let {userId} = useParams()
     const [loadingButton, setLoadingButton] = useState(false)
@@ -43,7 +43,7 @@ const Avatar = ({photos, currentUser}) => {
 
     useEffect(() => {
         profileAPI.isFollow(userId).then((response) => {
-                setFollowed(response.data)
+            setFollowed(response.data)
         })
     }, [])
 
@@ -55,6 +55,12 @@ const Avatar = ({photos, currentUser}) => {
     const unfollowUser = (userId, setLoadingButton) => {
         dispatch(unfollowSuccess(userId, setLoadingButton))
         setFollowed(false)
+    }
+
+    const onPutPhoto = (e) => {
+        if(e.target.files) {
+            savePhoto(e.target.files[0])
+        }
     }
 
     return (
@@ -74,7 +80,7 @@ const Avatar = ({photos, currentUser}) => {
                                 '&:hover': {opacity: 1},
                             }}>
                                 <UploadIcon/>
-                                <Typography sx={{ml: "5px"}}>Change Photo</Typography>
+                                <Typography sx={{ml: "5px"}}><input type={'file'} onChange={onPutPhoto}/></Typography>
                             </ListItem>
                         </List>
                     </AvatarOptions> : <></>

@@ -10,13 +10,17 @@ import LoginPage from "./components/Login/LoginPage";
 import RequireAuth from "./hok/RequireAuth";
 import Login from "./components/Login/Login";
 import {useDispatch, useSelector} from "react-redux";
-import {initialize} from "./redux/actions/auth";
+import {authUser, initialize} from "./redux/actions/auth";
 
 
 function App() {
     const dispatch = useDispatch()
     const userId = useSelector(({auth}) => auth.id)
     const init = useSelector(({app}) => app.initialize)
+
+    useEffect(() => {
+        dispatch(authUser()) // санка с запросом
+    }, [])
 
     useEffect(() => {
         dispatch(initialize())

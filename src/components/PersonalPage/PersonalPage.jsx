@@ -7,7 +7,7 @@ import PersonalInfo from "./PersonalInfo/PersonalInfo";
 import UsersPersonalPage from "./UsersPersonalPage/UsersPersonalPage";
 import PrettyBlock from "./PrettyBlock";
 import {useDispatch, useSelector} from "react-redux";
-import {addLikeAction, addPostAction, fetchProfile, getStatus} from "../../redux/actions/personalPage";
+import {addLikeAction, addPostAction, fetchProfile, getStatus, onSavePhoto} from "../../redux/actions/personalPage";
 import {Navigate, useParams} from 'react-router-dom';
 
 
@@ -38,12 +38,16 @@ const PersonalPage = () => {
         dispatch(addLikeAction(post))
     }
 
+    const savePhoto = (photo) => {
+        dispatch(onSavePhoto(photo))
+    }
+
 
     return (
         isLoading && profile &&
         <Grid container spacing={2}>
             <Grid item xs={4}>
-                <Avatar {...profile} currentUser={currentUser} />
+                <Avatar {...profile} currentUser={currentUser} savePhoto={savePhoto} />
                 <PrettyBlock/>
                 <UsersPersonalPage />
             </Grid>
