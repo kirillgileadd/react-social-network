@@ -1,5 +1,5 @@
 import {authAPI, profileAPI} from "../../api/api";
-import {setProfileAction, setUserProfileLoadingAction} from "./personalPage";
+import {setOwnerPhotoAction, setProfileAction, setUserProfileLoadingAction} from "./personalPage";
 
 export const setAuthUserDataAction = (data) => {
     return {
@@ -37,7 +37,8 @@ export const login = (email, password, rememberMe) => (dispatch) => {
 export const logout = () => (dispatch) => {
     authAPI.logout().then(response => {
         if(response.data.resultCode === 0 ) {
-            dispatch(setAuthUserDataAction({data: null, isAuth: false}))
+            dispatch(setAuthUserDataAction({data: {email: null, id: null, login: null}, isAuth: false}))
+            dispatch(setOwnerPhotoAction(null))
         }
     })
 }

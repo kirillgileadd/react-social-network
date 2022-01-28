@@ -8,7 +8,7 @@ import {AddPostInput} from "../../../UI/AddPostInput";
 import noAvatarSmall from '../../../images/noAvatarSmall.svg'
 
 
-const PostInput = ({addPost, photos}) => {
+const PostInput = ({addPost, ownerPhoto}) => {
     const [postInputValue, setPostInputValue] = useState('')
 
     const handlePostInputValue = (e) => {
@@ -21,7 +21,7 @@ const PostInput = ({addPost, photos}) => {
                 component="form"
                 sx={{display: 'flex', alignItems: 'flex-start'}}
             >
-                <Avatar alt="Remy Sharp" src={photos.small ?? noAvatarSmall}/>
+                <Avatar alt="Remy Sharp" src={ownerPhoto ?? noAvatarSmall}/>
                 <AddPostInput
                     multiline
                     maxRows={6}

@@ -16,21 +16,12 @@ export const InfoBox = styled(Box)(({theme}) => ({
 
 export const InfoText = styled(Typography)(({theme}) => ({
     width: '250px',
+    color: theme.palette.text.secondary,
     overflow: 'hidden'
 }));
 
 const PersonalInfo = ({fullName, aboutMe, contacts, lookingForAJob, lookingForAJobDescription, currentUser}) => {
     const [showInfo, setShowInfo] = useState(false)
-    let descriptionItems = [
-        {title: 'About me', content: aboutMe},
-        {title: 'Looking for a job', content: lookingForAJob},
-        {title: 'Looking for a job description', content: lookingForAJobDescription},
-    ]
-
-    let contactsItems = [
-        {title: 'Git', content: contacts.github},
-        {title: 'Vk', content: contacts.vk},
-    ]
 
     const handleShowInfo = () => {
         if (showInfo) {
@@ -40,10 +31,9 @@ const PersonalInfo = ({fullName, aboutMe, contacts, lookingForAJob, lookingForAJ
         }
     }
 
-
     return (
         <StyledPaper>
-            <Box >
+            <Box>
                 <Box>
                     <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                         <Typography variant={'h6'}>
@@ -60,10 +50,14 @@ const PersonalInfo = ({fullName, aboutMe, contacts, lookingForAJob, lookingForAJ
                     showInfo ?
                         <>
                             <Box>
-                                <MainPersonalInfoItems descriptionItems={descriptionItems}/>
+                                <MainPersonalInfoItems aboutMe={aboutMe}
+                                                       lookingForAJob={lookingForAJob}
+                                                       lookingForAJobDescription={lookingForAJobDescription}/>
                                 <Divider textAlign={'left'}>Contacts</Divider>
                                 {
-                                    Object.values(contacts).filter((el) => el !== null).length ?  <PersonalInfoContacts contactsItems={contactsItems}/> : <Typography>The user has not added his contacts yet</Typography>
+                                    Object.values(contacts).filter((el) => el !== null).length ?
+                                        <PersonalInfoContacts contacts={contacts}/> :
+                                        <Typography>The user has not added his contacts yet</Typography>
                                 }
                             </Box>
                             <Button fullWidth onClick={handleShowInfo}>
@@ -72,7 +66,9 @@ const PersonalInfo = ({fullName, aboutMe, contacts, lookingForAJob, lookingForAJ
                         </>
                         :
                         <>
-                            <MainPersonalInfoItems descriptionItems={descriptionItems}/>
+                            <MainPersonalInfoItems aboutMe={aboutMe}
+                                                   lookingForAJob={lookingForAJob}
+                                                   lookingForAJobDescription={lookingForAJobDescription}/>
                             <Button fullWidth onClick={handleShowInfo}>
                                 <Typography sx={{textTransform: 'none'}}>Show detail information</Typography>
                             </Button>

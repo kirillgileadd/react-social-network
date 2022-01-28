@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ImageList, ImageListItem, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import {StyledPaper} from "../../../UI/StyledPaper";
@@ -6,25 +6,11 @@ import noPhotos from '../../../images/noPhoto.svg'
 
 
 const Photos = ({photos}) => {
+    const [photosGallery, setPhotosGallery] = useState([])
 
-    const itemData = [
-        {
-            img: photos.large ?? noPhotos,
-            title: 'Breakfast',
-        },
-        {
-            img: noPhotos,
-            title: 'Burger',
-        },
-        {
-            img: noPhotos,
-            title: 'Camera',
-        },
-        {
-            img: noPhotos,
-            title: 'Camera',
-        },
-    ]
+    useEffect(() => {
+        setPhotosGallery(prev =>  !photos ? [photos.large] : [photos.large, ...prev])
+    }, [photos])
 
     return (
         <StyledPaper >
@@ -34,11 +20,11 @@ const Photos = ({photos}) => {
                 </Typography>
             </Box>
             <ImageList sx={{ maxWidth: 540, m: 0, flexWrap: 'wrap'}} cols={4} rowHeight={135}>
-                {itemData.map((item) => (
-                    <ImageListItem key={item.img}>
+                {photosGallery.map((item) => (
+                    <ImageListItem key={item}>
                         <img
-                            src={`${item.img}?w=135&h=135&fit=crop&auto=format`}
-                            srcSet={`${item.img}?w=135&h=135&fit=crop&auto=format&dpr=2 2x`}
+                            src={`${item || noPhotos}?w=135&h=135&fit=crop&auto=format`}
+                            srcSet={`${item}?w=135&h=135&fit=crop&auto=format&dpr=2 2x`}
                             loading="lazy"
                         />
                     </ImageListItem>

@@ -6,6 +6,7 @@ import logo from '../../images/logo1.svg'
 import {styled} from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import {StyledLink} from "../../UI/Links/StyledLink";
 
 
 export const StyledLogo = styled('img')(({theme}) => ({
@@ -25,8 +26,8 @@ const LoginPage = () => {
                 <img style={{width: '100%', height: '100%', objectFit: 'cover'}} src={loginBG} alt=""/>
                 <StyledLogo src={loginLogo} alt=""/>
             </Grid>
-            <Grid item xs={5} sx={{ height: '100%', display: 'flex', alignItems: 'center'}}>
-                <Box sx={{p: 5,}} >
+            <Grid item xs={5} sx={{height: '100%', display: 'flex', alignItems: 'center'}}>
+                <Box sx={{p: 5,}}>
                     <img src={logo} alt=""/>
                     <Typography sx={{mt: 4}} variant={'h2'} fontWeight={'bolder'}>
                         React dev social network
@@ -38,10 +39,12 @@ const LoginPage = () => {
                             display: 'block'
                         }
                     }}>
-                        <Button variant={'outlined'} >
-                            Sign In
-                        </Button>
-                        <Button variant={'contained'} >
+                        <StyledLink to={'/login'}>
+                            <Button variant={'outlined'}>
+                                Sign In
+                            </Button>
+                        </StyledLink>
+                        <Button variant={'contained'}>
                             Sign Up
                         </Button>
                     </Box>

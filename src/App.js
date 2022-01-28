@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import PersonalPage from "./components/PersonalPage/PersonalPage";
 import Messages from "./components/Messages/Messages";
 import {Navigate, Route, Routes} from "react-router-dom";
-import EditProfileInfo from "./components/PersonalPage/PersonalInfo/EditProfileInfo";
+import EditProfileInfo from "./components/PersonalPage/PersonalInfo/EditProfileInfo/EditProfileInfo";
 import Users from "./components/Users/Users";
 import Layout from "./Layout";
 import Music from "./components/Music/Music";

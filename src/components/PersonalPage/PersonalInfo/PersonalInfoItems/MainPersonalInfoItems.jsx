@@ -2,21 +2,35 @@ import React from 'react';
 import {InfoBox, InfoText} from "../PersonalInfo";
 import {List} from "@mui/material";
 
-const MainPersonalInfoItems = ({descriptionItems}) => {
+const MainPersonalInfoItems = ({lookingForAJobDescription, lookingForAJob, aboutMe}) => {
     return (
         <List>
-        {
-            descriptionItems.map(item => <>
-                <InfoBox >
+            <InfoBox>
+                <InfoText>
+                    About Me:
+                </InfoText>
+                <InfoText>
+                    {aboutMe || 'Not filed yet'}
+                </InfoText>
+            </InfoBox>
+            <InfoBox>
+                <InfoText>
+                    Looking for a job:
+                </InfoText>
+                <InfoText>
+                    {lookingForAJob ? 'Yes' : 'No'}
+                </InfoText>
+            </InfoBox>
+            {
+                lookingForAJob && <InfoBox>
                     <InfoText>
-                        {item.title}:
+                        Looking for a job description:
                     </InfoText>
-                    <InfoText sx={{color: "text.secondary", ml: 4}}>
-                        {typeof item.content === 'boolean' ? item.content ? 'Yes' : 'No' : item.content ? item.content : 'Not filled in yet'}
+                    <InfoText>
+                        {lookingForAJobDescription}
                     </InfoText>
                 </InfoBox>
-            </>)
-        }
+            }
         </List>
     );
 };

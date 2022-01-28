@@ -39,6 +39,11 @@ export const setLoadingStatusAction = (value) => ({
     payload: value
 })
 
+export const setOwnerPhotoAction = (photo) => ({
+    type: 'SET_OWNER_PHOTO',
+    payload: photo
+})
+
 
 export const fetchProfile = (userId) => (dispatch) => {
     dispatch(setUserProfileLoadingAction(false))
@@ -53,13 +58,7 @@ export const getStatus = (userId) => (dispatch) => {
     })
 }
 
-export const onSavePhoto = (photo) => (dispatch) => {
-    profileAPI.savePhoto(photo).then(response => {
-        if(response.data.resultCode === 0) {
-            dispatch(getPhotosAction(response.data.data.photos))
-        }
-    })
-}
+
 
 export const putStatus = (status,  setAnchorEl) => (dispatch) => {
     dispatch(setLoadingStatusAction(false))
@@ -72,3 +71,15 @@ export const putStatus = (status,  setAnchorEl) => (dispatch) => {
     })
 }
 
+export const onSavePhoto = (photo) => (dispatch) => {
+    profileAPI.savePhoto(photo).then(response => {
+        if(response.data.resultCode === 0) {
+            dispatch(getPhotosAction(response.data.data.photos))
+        }
+    })
+}
+export const setOwnerPhoto = (ownerId) => (dispatch) => {
+    profileAPI.getProfile(ownerId).then((responce) => {
+        dispatch(setOwnerPhotoAction(responce.data.photos.small))
+    })
+}

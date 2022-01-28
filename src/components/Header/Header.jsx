@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {alpha, styled} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -7,11 +7,13 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import logo from '../../images/logo1.svg'
+import logo from '../../images/finalLogo.svg'
 import {logout} from "../../redux/actions/auth";
 import {useDispatch, useSelector} from "react-redux";
 import {StyledLink} from "../../UI/Links/StyledLink";
 import HeaderIconMenu from "./HeaderIconMenu";
+import {setOwnerPhoto} from "../../redux/actions/personalPage";
+
 
 const Search = styled('div')(({theme}) => ({
     position: 'relative',
@@ -46,7 +48,7 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            width: '145px',
+            width: '218px',
             '&:focus': {
                 width: '30ch',
             },
@@ -60,9 +62,13 @@ const Header = () => {
     const ownerId = useSelector(({auth}) => auth.id)
     const login = useSelector(({auth}) => auth.login)
     const profile = useSelector(({personalPage}) => personalPage.profile)
+    const {ownerPhoto} = useSelector(({personalPage}) => personalPage)
 
     const currentUser = profile && profile.id === ownerId
 
+    useEffect(() => {
+       dispatch(setOwnerPhoto(ownerId))
+    }, [profile])
 
     const logoutUser = () => {
         dispatch(logout())
@@ -89,14 +95,14 @@ const Header = () => {
                             <Box sx={{display: "flex", alignItems: "center",}}>
                                 <StyledLink sx={{display: 'flex', alignItems: 'center'}}
                                             to={!isAuth ? '/loginPage' : `/${ownerId}`}>
-                                    <IconButton sx={{mr: '15px'}}>
-                                        <img src={logo} alt=""/>
-                                    </IconButton>
+                                    <Box sx={{mr: 1}}>
+                                        <img style={{width: "40px"}} src={logo} alt=""/>
+                                    </Box>
                                     <Typography
                                         variant="h6"
                                         noWrap
                                         component="div"
-                                        sx={{display: {xs: 'none', sm: 'block'}, marginRight: 2}}
+                                        sx={{display: {xs: 'none', sm: 'block'}}}
                                     >
                                         GileadSocial
                                     </Typography>
@@ -114,7 +120,7 @@ const Header = () => {
                             <Box>
                                 {
                                     isAuth ? (
-                                            <HeaderIconMenu logout={logoutUser} ownerId={ownerId} profile={profile} ownerName={login } currentUser={currentUser} />
+                                            <HeaderIconMenu logout={logoutUser} ownerPhoto={ownerPhoto} isAuth={isAuth} ownerName={login } currentUser={currentUser} />
                                         )
                                         : (
                                             <StyledLink to={'/login'}>

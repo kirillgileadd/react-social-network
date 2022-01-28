@@ -15,7 +15,8 @@ const initialState = {
     status: {
         isLoading: true,
         statusValue: ''
-    }
+    },
+    ownerPhoto: null
 }
 
 export const personalPageReducer = (state = initialState, action) => {
@@ -90,6 +91,12 @@ export const personalPageReducer = (state = initialState, action) => {
                     ...state.profile,
                     photos: action.payload
                 }
+            }
+        }
+        case 'SET_OWNER_PHOTO': {
+            return {
+                ...state,
+                ownerPhoto: action.payload
             }
         }
         default:

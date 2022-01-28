@@ -47,14 +47,12 @@ const Avatar = ({photos, currentUser, savePhoto}) => {
         })
     }, [])
 
-    const followUser = (userId, setLoadingButton) => {
-        dispatch(followSuccess(userId, setLoadingButton))
-        setFollowed(true)
+    const followUser = (userId, setLoadingButton, setFollowed) => {
+        dispatch(followSuccess(userId, setLoadingButton ,setFollowed))
     }
 
-    const unfollowUser = (userId, setLoadingButton) => {
-        dispatch(unfollowSuccess(userId, setLoadingButton))
-        setFollowed(false)
+    const unfollowUser = (userId, setLoadingButton, setFollowed) => {
+        dispatch(unfollowSuccess(userId, setLoadingButton, setFollowed))
     }
 
     const onPutPhoto = (e) => {
@@ -80,7 +78,12 @@ const Avatar = ({photos, currentUser, savePhoto}) => {
                                 '&:hover': {opacity: 1},
                             }}>
                                 <UploadIcon/>
-                                <Typography sx={{ml: "5px"}}><input type={'file'} onChange={onPutPhoto}/></Typography>
+                                <Typography sx={{ml: "5px"}}>
+                                    <label>
+                                        Change Photo
+                                        <input style={{display: 'none'}} type={'file'} onChange={onPutPhoto}/>
+                                    </label>
+                                </Typography>
                             </ListItem>
                         </List>
                     </AvatarOptions> : <></>
@@ -107,7 +110,7 @@ const Avatar = ({photos, currentUser, savePhoto}) => {
                             disabled={loadingButton}
                             onClick={() => {
                                 setLoadingButton(true)
-                                unfollowUser(userId, setLoadingButton)
+                                unfollowUser(userId, setLoadingButton, setFollowed)
                             }}
                         >
                             Unfollow
@@ -117,7 +120,7 @@ const Avatar = ({photos, currentUser, savePhoto}) => {
                             disabled={loadingButton}
                             onClick={() => {
                                 setLoadingButton(true)
-                                followUser(userId, setLoadingButton)
+                                followUser(userId, setLoadingButton, setFollowed)
 
                             }}
                         >

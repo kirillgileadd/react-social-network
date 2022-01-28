@@ -16,8 +16,8 @@ const PersonalPage = () => {
     let { userId } = useParams()
     const profile = useSelector(({personalPage}) => personalPage.profile)
     const posts = useSelector(({personalPage}) => personalPage.posts)
+    const {ownerPhoto} = useSelector(({personalPage}) => personalPage)
     const isLoading = useSelector(({personalPage}) => personalPage.isLoading)
-    const isAuth = useSelector(({auth}) => auth.isAuth)
     const id = useSelector(({auth}) => auth.id)
 
     let currentUser = userId === String(id)
@@ -55,6 +55,7 @@ const PersonalPage = () => {
                 <PersonalInfo {...profile} currentUser={currentUser} />
                 <Photos {...profile}/>
                 <Posts photos={profile.photos}
+                       ownerPhoto={ownerPhoto}
                        fullname={profile.fullName}
                        posts={posts}
                        addPost={addPost}

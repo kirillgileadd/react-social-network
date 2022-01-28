@@ -5,11 +5,12 @@ import Typography from "@mui/material/Typography";
 import noAvatarSmall from '../../images/noAvatarSmall.svg'
 import Box from "@mui/material/Box";
 import {profileAPI} from "../../api/api";
+import {setOwnerPhoto} from "../../redux/actions/personalPage";
 
-const HeaderIconMenu = ({logout, profile, ownerName, ownerId}) => {
+const HeaderIconMenu = ({logout, profile, ownerName, ownerPhoto, isAuth}) => {
     const settings = ['Logout'];
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    const [ownerPhoto, setOwnerPhoto] = useState(null)
+    // const [ownerPhoto, setOwnerPhoto] = useState(null)
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -19,12 +20,7 @@ const HeaderIconMenu = ({logout, profile, ownerName, ownerId}) => {
         setAnchorElUser(null);
     };
 
-    useEffect(() => {
-        profileAPI.getProfile(ownerId).then((responce) => {
-            console.log(responce.data.photos.small)
-            setOwnerPhoto(responce.data.photos.small)
-        })
-    }, [profile])
+
 
     return (
         <div>
@@ -32,7 +28,7 @@ const HeaderIconMenu = ({logout, profile, ownerName, ownerId}) => {
                 <Typography sx={{mr: 1, fontWeight: 'bold'}}>{ownerName || ''}</Typography>
                 <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{p: 0, border: '1px solid #fff'}}>
-                        <Avatar alt="Remy Sharp" src={ownerPhoto || noAvatarSmall}/>
+                        <Avatar alt="Remy Sharp" src={isAuth && ownerPhoto || noAvatarSmall}/>
                     </IconButton>
                 </Tooltip>
             </Box>
