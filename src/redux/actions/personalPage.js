@@ -83,3 +83,11 @@ export const setOwnerPhoto = (ownerId) => (dispatch) => {
         dispatch(setOwnerPhotoAction(responce.data.photos.small))
     })
 }
+
+export const editProfileInfo = (data) => (dispatch) => {
+    profileAPI.putProfile(data).then((response) => {
+        if(response.data.resultCode === 0) {
+            dispatch(setProfileAction(data))
+        }
+    })
+}

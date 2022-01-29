@@ -62,22 +62,22 @@ export const searchUsers = (pageSize, currentPage, debouncedSearchTerm) => (disp
     }
 }
 
-export const unfollowSuccess = (userId, setLoadingButton, setFollowed) => (dispatch) => {
+export const unfollowSuccess = (userId, setLoadingButton, setFollowed = null) => (dispatch) => {
     usersAPI.unfollow(userId).then(response => {
         if (response.data.resultCode === 0) {
             dispatch(unfollowAction(userId))
-            setFollowed(false)
             setLoadingButton(false)
+            setFollowed(false)
         }
     })
 }
 
-export const followSuccess = (userId, setLoadingButton, setFollowed) => (dispatch) => {
+export const followSuccess = (userId, setLoadingButton, setFollowed = null) => (dispatch) => {
     usersAPI.follow(userId).then(response => {
         if (response.data.resultCode === 0) {
             dispatch(followAction(userId))
-            setFollowed(true)
             setLoadingButton(false)
+            setFollowed(true)
         }
     })
 }

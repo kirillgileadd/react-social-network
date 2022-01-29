@@ -16,6 +16,7 @@ import {authUser, initialize} from "./redux/actions/auth";
 function App() {
     const dispatch = useDispatch()
     const userId = useSelector(({auth}) => auth.id)
+    const {profile} = useSelector(({personalPage}) => personalPage)
     const init = useSelector(({app}) => app.initialize)
 
     useEffect(() => {
@@ -43,7 +44,7 @@ function App() {
                         </RequireAuth>}/>
                     <Route path={'/edit'} element={
                         <RequireAuth>
-                            <EditProfileInfo/>
+                            <EditProfileInfo userId={userId}/>
                         </RequireAuth>
                     }/>
                     <Route path={'/users'} element={<Users/>}/>

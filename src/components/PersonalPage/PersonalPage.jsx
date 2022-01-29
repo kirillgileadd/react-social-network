@@ -8,7 +8,7 @@ import UsersPersonalPage from "./UsersPersonalPage/UsersPersonalPage";
 import PrettyBlock from "./PrettyBlock";
 import {useDispatch, useSelector} from "react-redux";
 import {addLikeAction, addPostAction, fetchProfile, getStatus, onSavePhoto} from "../../redux/actions/personalPage";
-import {Navigate, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 
 
 const PersonalPage = () => {

@@ -10,7 +10,6 @@ import {setOwnerPhoto} from "../../redux/actions/personalPage";
 const HeaderIconMenu = ({logout, profile, ownerName, ownerPhoto, isAuth}) => {
     const settings = ['Logout'];
     const [anchorElUser, setAnchorElUser] = React.useState(null);
-    // const [ownerPhoto, setOwnerPhoto] = useState(null)
 
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
@@ -19,8 +18,6 @@ const HeaderIconMenu = ({logout, profile, ownerName, ownerPhoto, isAuth}) => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
-
 
     return (
         <div>
@@ -33,7 +30,7 @@ const HeaderIconMenu = ({logout, profile, ownerName, ownerPhoto, isAuth}) => {
                 </Tooltip>
             </Box>
             <Menu
-                sx={{mt: '45px'}}
+                sx={{mt: '45px', '& .MuiList-root ': {p: 0}}}
                 id="menu-appbar"
                 anchorEl={anchorElUser}
                 anchorOrigin={{
@@ -49,8 +46,8 @@ const HeaderIconMenu = ({logout, profile, ownerName, ownerPhoto, isAuth}) => {
                 onClose={handleCloseUserMenu}
             >
                 {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center" onClick={logout}>{setting}</Typography>
+                    <MenuItem key={setting} onClick={logout}>
+                        <Typography textAlign="center">{setting}</Typography>
                     </MenuItem>
                 ))}
             </Menu>

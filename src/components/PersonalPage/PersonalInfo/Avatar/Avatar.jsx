@@ -48,7 +48,7 @@ const Avatar = ({photos, currentUser, savePhoto}) => {
     }, [])
 
     const followUser = (userId, setLoadingButton, setFollowed) => {
-        dispatch(followSuccess(userId, setLoadingButton ,setFollowed))
+        dispatch(followSuccess(userId, setLoadingButton, setFollowed))
     }
 
     const unfollowUser = (userId, setLoadingButton, setFollowed) => {
@@ -56,7 +56,7 @@ const Avatar = ({photos, currentUser, savePhoto}) => {
     }
 
     const onPutPhoto = (e) => {
-        if(e.target.files) {
+        if (e.target.files) {
             savePhoto(e.target.files[0])
         }
     }
@@ -91,43 +91,45 @@ const Avatar = ({photos, currentUser, savePhoto}) => {
 
             </AvatarBox>
             {
-                currentUser ? <Button variant={'contained'} fullWidth>
-                    <StyledLink to={'/edit'}>
-                        Edit
-                    </StyledLink>
-                </Button> : <>
-                    <Button
-                        sx={{mb: 1}}
-                        variant={'contained'}
-                        fullWidth
-                    >
-                        White a message
-                    </Button>
-                    {
-                        followed ? <Button
-                            variant={'outlined'}
-                            fullWidth
-                            disabled={loadingButton}
-                            onClick={() => {
-                                setLoadingButton(true)
-                                unfollowUser(userId, setLoadingButton, setFollowed)
-                            }}
-                        >
-                            Unfollow
-                        </Button> : <Button
-                            variant={'outlined'}
-                            fullWidth
-                            disabled={loadingButton}
-                            onClick={() => {
-                                setLoadingButton(true)
-                                followUser(userId, setLoadingButton, setFollowed)
-
-                            }}
-                        >
-                            Follow
+                currentUser ?
+                    <StyledLink to={`/edit`}>
+                        <Button variant={'contained'} fullWidth>
+                            Edit
                         </Button>
-                    }
-                </>
+                    </StyledLink> :
+                    <>
+                        <Button
+                            sx={{mb: 1}}
+                            variant={'contained'}
+                            fullWidth
+                        >
+                            White a message
+                        </Button>
+                        {
+                            followed ? <Button
+                                variant={'outlined'}
+                                fullWidth
+                                disabled={loadingButton}
+                                onClick={() => {
+                                    setLoadingButton(true)
+                                    unfollowUser(userId, setLoadingButton, setFollowed)
+                                }}
+                            >
+                                Unfollow
+                            </Button> : <Button
+                                variant={'outlined'}
+                                fullWidth
+                                disabled={loadingButton}
+                                onClick={() => {
+                                    setLoadingButton(true)
+                                    followUser(userId, setLoadingButton, setFollowed)
+
+                                }}
+                            >
+                                Follow
+                            </Button>
+                        }
+                    </>
             }
         </StyledPaper>
     );
