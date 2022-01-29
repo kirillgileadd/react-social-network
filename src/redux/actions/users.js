@@ -40,44 +40,40 @@ export const changePageNumberAction = (currentPage) => ({
     payload: currentPage
 })
 
-export const fetchUsers = (pageSize, currentPage) => (dispatch) => {
+export const fetchUsers = (pageSize, currentPage) => async (dispatch) => {
     dispatch(setLoading(false))
-    usersAPI.getUsers(pageSize, currentPage).then(response => {
-        dispatch(setUsersAction(response.data))
-    })
+    let response = await usersAPI.getUsers(pageSize, currentPage)
+    dispatch(setUsersAction(response.data))
 }
 
-export const searchUsers = (pageSize, currentPage, debouncedSearchTerm) => (dispatch) => {
+export const searchUsers = (pageSize, currentPage, debouncedSearchTerm) => async (dispatch) => {
     if (debouncedSearchTerm) {
+        let response = await usersAPI.searchUsers(pageSize, currentPage, debouncedSearchTerm)
         dispatch(setLoading(false))
-        usersAPI.searchUsers(pageSize, currentPage, debouncedSearchTerm).then(results => {
-            if(Math.ceil(results.data.totalCount / pageSize) < currentPage) {
-                dispatch(changePageNumberAction(1))
-            }
-            dispatch(setLoading(true))
-            dispatch(setUsersAction(results.data))
-        });
+        if (Math.ceil(response.data.totalCount / pageSize) < currentPage) {
+            dispatch(changePageNumberAction(1))
+        }
+        dispatch(setLoading(true))
+        dispatch(setUsersAction(response.data))
     } else {
         dispatch(fetchUsers(pageSize, currentPage))
     }
 }
 
-export const unfollowSuccess = (userId, setLoadingButton, setFollowed = null) => (dispatch) => {
-    usersAPI.unfollow(userId).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(unfollowAction(userId))
-            setLoadingButton(false)
-            setFollowed(false)
-        }
-    })
+export const unfollowSuccess = (userId, setLoadingButton, setFollowed = null) => async (dispatch) => {
+    let response = await usersAPI.unfollow(userId)
+    if (response.data.resultCode === 0) {
+        dispatch(unfollowAction(userId))
+        setLoadingButton(false)
+        setFollowed(false)
+    }
 }
 
-export const followSuccess = (userId, setLoadingButton, setFollowed = null) => (dispatch) => {
-    usersAPI.follow(userId).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(followAction(userId))
-            setLoadingButton(false)
-            setFollowed(true)
-        }
-    })
+export const followSuccess = (userId, setLoadingButton, setFollowed = null) => async (dispatch) => {
+    let response = await usersAPI.follow(userId)
+    if (response.data.resultCode === 0) {
+        dispatch(followAction(userId))
+        setLoadingButton(false)
+        setFollowed(true)
+    }
 }

@@ -45,49 +45,42 @@ export const setOwnerPhotoAction = (photo) => ({
 })
 
 
-export const fetchProfile = (userId) => (dispatch) => {
+export const fetchProfile = (userId) => async (dispatch) => {
     dispatch(setUserProfileLoadingAction(false))
-    profileAPI.getProfile(userId).then(response => {
-        dispatch(setProfileAction(response.data))
-    })
+    let response = await profileAPI.getProfile(userId)
+    dispatch(setProfileAction(response.data))
 }
 
-export const getStatus = (userId) => (dispatch) => {
-    profileAPI.getStatus(userId).then(response => {
-        dispatch(getStatusAction(response.data))
-    })
+export const getStatus = (userId) => async (dispatch) => {
+    let response = await profileAPI.getStatus(userId)
+    dispatch(getStatusAction(response.data))
 }
 
 
-
-export const putStatus = (status,  setAnchorEl) => (dispatch) => {
+export const putStatus = (status, setAnchorEl) => async (dispatch) => {
     dispatch(setLoadingStatusAction(false))
-    profileAPI.putStatus(status).then(response => {
-        if(response.data.resultCode === 0) {
-            dispatch(getStatusAction(status))
-            dispatch(setLoadingStatusAction(true))
-            setAnchorEl(null)
-        }
-    })
+    let response = await profileAPI.putStatus(status)
+    if (response.data.resultCode === 0) {
+        dispatch(getStatusAction(status))
+        dispatch(setLoadingStatusAction(true))
+        setAnchorEl(null)
+    }
 }
 
-export const onSavePhoto = (photo) => (dispatch) => {
-    profileAPI.savePhoto(photo).then(response => {
-        if(response.data.resultCode === 0) {
-            dispatch(getPhotosAction(response.data.data.photos))
-        }
-    })
+export const onSavePhoto = (photo) => async (dispatch) => {
+    let response = await profileAPI.savePhoto(photo)
+    if (response.data.resultCode === 0) {
+        dispatch(getPhotosAction(response.data.data.photos))
+    }
 }
-export const setOwnerPhoto = (ownerId) => (dispatch) => {
-    profileAPI.getProfile(ownerId).then((responce) => {
-        dispatch(setOwnerPhotoAction(responce.data.photos.small))
-    })
+export const setOwnerPhoto = (ownerId) => async (dispatch) => {
+    let response = await profileAPI.getProfile(ownerId)
+    dispatch(setOwnerPhotoAction(response.data.photos.small))
 }
 
-export const editProfileInfo = (data) => (dispatch) => {
-    profileAPI.putProfile(data).then((response) => {
-        if(response.data.resultCode === 0) {
-            dispatch(setProfileAction(data))
-        }
-    })
+export const editProfileInfo = (data) => async (dispatch) => {
+    let response = await profileAPI.putProfile(data)
+    if (response.data.resultCode === 0) {
+        dispatch(setProfileAction(data))
+    }
 }

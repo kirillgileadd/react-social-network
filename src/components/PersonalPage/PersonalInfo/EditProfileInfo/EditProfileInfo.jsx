@@ -47,6 +47,7 @@ const EditProfileInfo = ({userId}) => {
         setFormState(profile)
     }, [profile])
 
+
     useEffect(() => {
        return  function hidePopUp () {
            setOpenAlert(false)
@@ -58,8 +59,14 @@ const EditProfileInfo = ({userId}) => {
     };
 
     const onSubmit = (data) => {
+        let newProfile = {
+            ...data,
+            contacts: {
+                ...profile.contacts
+            }
+        }
         setOpenAlert(true)
-        dispatch(editProfileInfo(data))
+        dispatch(editProfileInfo(newProfile))
     };
     const onSubmitContacts = (data) => {
         let newProfile = {
