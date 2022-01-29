@@ -60,9 +60,9 @@ const Users = () => {
     }
 
     return (
-        <Box>
-            <Grid container spacing={2}>
-                <Grid item xs={8}>
+        <Box >
+            <Grid container spacing={2} >
+                <Grid item xs={12} md={8}>
                     <Box sx={{
                         typography: 'body1',
                         padding: '15px',
@@ -110,7 +110,7 @@ const Users = () => {
                                 color="primary" onChange={handleChangePageNumber}
                                 page={currentPage}/>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={0} md={4} sx={{display: {xs: 'none', md: 'block'}}}>
                     <StyledPaper>
                         Content!
                     </StyledPaper>

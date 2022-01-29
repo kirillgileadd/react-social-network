@@ -5,7 +5,7 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 const PrettyBlock = () => {
     const [open, setOpen] = useState(true)
 
-    return open && <Alert icon={<SentimentSatisfiedAltIcon fontSize="small"/>} sx={{mb: 2}} onClose={() => {
+    return open && <Alert icon={<SentimentSatisfiedAltIcon fontSize="small"/>} sx={{mb: 2, display: {xs: 'none', md: 'block'}}} onClose={() => {
         setOpen(false)
     }}>You're beautiful when you smile :)</Alert>
 };

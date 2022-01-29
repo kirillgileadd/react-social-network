@@ -17,7 +17,7 @@ const UsersPersonalPage = () => {
     }, [])
 
     return (
-        <StyledPaper>
+        <StyledPaper sx={{display: {xs: 'none', md: 'block'}}}>
             <List sx={{width: '100%', height: '220px', p: 0, display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between'}}>
                 {
                     profileUsers.map((user) => <UsersPersonalPageItem key={user.id} {...user}/>)

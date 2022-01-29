@@ -46,7 +46,7 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
         padding: theme.spacing(1, 1, 1, 0),
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
-        width: '100%',
+        // width: '100%',
         [theme.breakpoints.up('sm')]: {
             width: '218px',
             '&:focus': {
@@ -93,7 +93,7 @@ const Header = () => {
                             alignItems: 'center'
                         }}>
                             <Box sx={{display: "flex", alignItems: "center",}}>
-                                <StyledLink sx={{display: 'flex', alignItems: 'center'}}
+                                <StyledLink sx={{display: 'flex', alignItems: 'center', width: 'auto'}}
                                             to={!isAuth ? '/loginPage' : `/${ownerId}`}>
                                     <Box sx={{mr: 1}}>
                                         <img style={{width: "40px"}} src={logo} alt=""/>
@@ -107,7 +107,7 @@ const Header = () => {
                                         GileadSocial
                                     </Typography>
                                 </StyledLink>
-                                <Search>
+                                <Search  sx={{display: {xs: 'none', sm: 'block'}}}>
                                     <SearchIconWrapper>
                                         <SearchIcon/>
                                     </SearchIconWrapper>

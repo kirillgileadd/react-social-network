@@ -31,7 +31,10 @@ export const AvatarOptions = styled('div')(({theme}) => ({
     height: '20px',
     backgroundColor: "rgba(0, 0, 0, 0.5)",
     transition: 'all 0.3s',
-    padding: "10px"
+    padding: "10px",
+        [theme.breakpoints.down('md')]: {
+    bottom: '0',
+},
 }));
 
 
@@ -103,7 +106,7 @@ const Avatar = ({photos, currentUser, savePhoto}) => {
                             variant={'contained'}
                             fullWidth
                         >
-                            White a message
+                            Write a message
                         </Button>
                         {
                             followed ? <Button

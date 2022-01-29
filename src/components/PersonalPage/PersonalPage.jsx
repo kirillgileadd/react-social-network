@@ -46,12 +46,12 @@ const PersonalPage = () => {
     return (
         isLoading && profile &&
         <Grid container spacing={2}>
-            <Grid item xs={4}>
+            <Grid item xs={0} md={4}>
                 <Avatar {...profile} currentUser={currentUser} savePhoto={savePhoto} />
                 <PrettyBlock/>
                 <UsersPersonalPage />
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={12} md={8}>
                 <PersonalInfo {...profile} currentUser={currentUser} />
                 <Photos {...profile}/>
                 <Posts photos={profile.photos}

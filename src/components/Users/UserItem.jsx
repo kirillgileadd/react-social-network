@@ -51,7 +51,7 @@ const UserItem = ({name, photos, status, followed, id, followUser, unfollowUser}
                                     variant="body2"
                                     color={'primary.main'}
                                 >
-                                    White a message
+                                    To write
                                 </Typography>
                                 {
                                     currentUserId === id ?
