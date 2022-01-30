@@ -13,7 +13,7 @@ const UserItem = ({name, photos, status, followed, id, followUser, unfollowUser}
 
     return (
         <>
-            <ListItem alignItems="flex-start" sx={{p: 0, width: '100%'}}>
+            <ListItem alignItems="flex-start" disablePadding>
                 <ListItemAvatar sx={{mr: 2}}>
                     <StyledLink to={`/${id}`}>
                         <Avatar {...stringAvatar(name.toUpperCase())}
@@ -27,20 +27,22 @@ const UserItem = ({name, photos, status, followed, id, followUser, unfollowUser}
                         }
                     }}
                     primary={
-                        <Typography
-                            sx={{}}
-                            fontWeight={'bold'}
-                            color={'primary.main'}
-                        >
-                            {name}
-                        </Typography>
+                        <StyledLink to={`/${id}`}>
+                            <Typography
+                                sx={{}}
+                                fontWeight={'bold'}
+                                color={'primary.main'}
+                            >
+                                {name}
+                            </Typography>
+                        </StyledLink>
                     }
                     secondary={
                         <>
                             <Typography
                                 variant="body2"
                                 noWrap
-                                width={"300px"}
+                                maxWidth={"300px"}
                             >
                                 {status ? status : 'Status'}
                             </Typography>
@@ -51,7 +53,7 @@ const UserItem = ({name, photos, status, followed, id, followUser, unfollowUser}
                                     variant="body2"
                                     color={'primary.main'}
                                 >
-                                    To write
+                                    Write a message
                                 </Typography>
                                 {
                                     currentUserId === id ?

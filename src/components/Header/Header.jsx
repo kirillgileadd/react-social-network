@@ -67,7 +67,7 @@ const Header = () => {
     const currentUser = profile && profile.id === ownerId
 
     useEffect(() => {
-       dispatch(setOwnerPhoto(ownerId))
+        dispatch(setOwnerPhoto(ownerId))
     }, [profile])
 
     const logoutUser = () => {
@@ -75,67 +75,64 @@ const Header = () => {
     }
 
     return (
-        <div>
-            <Box>
-                <AppBar position='fixed' sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                    <Toolbar sx={{
-                        width: "100%",
-                        maxWidth: "1050px",
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center'
-                    }}>
-                        <Box sx={{
-                            display: 'flex',
-                            width: "100%",
-                            padding: '0 15px',
-                            justifyContent: 'space-between',
-                            alignItems: 'center'
-                        }}>
-                            <Box sx={{display: "flex", alignItems: "center",}}>
-                                <StyledLink sx={{display: 'flex', alignItems: 'center', width: 'auto'}}
-                                            to={!isAuth ? '/loginPage' : `/${ownerId}`}>
-                                    <Box sx={{mr: 1}}>
-                                        <img style={{width: "40px"}} src={logo} alt=""/>
-                                    </Box>
-                                    <Typography
-                                        variant="h6"
-                                        noWrap
-                                        component="div"
-                                        sx={{display: {xs: 'none', sm: 'block'}}}
-                                    >
-                                        GileadSocial
-                                    </Typography>
-                                </StyledLink>
-                                <Search  sx={{display: {xs: 'none', sm: 'block'}}}>
-                                    <SearchIconWrapper>
-                                        <SearchIcon/>
-                                    </SearchIconWrapper>
-                                    <StyledInputBase
-                                        placeholder="Search…"
-                                        inputProps={{'aria-label': 'search'}}
-                                    />
-                                </Search>
+        <AppBar position='fixed' sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <Toolbar sx={{
+                width: "100%",
+                maxWidth: "1050px",
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+            }}>
+                <Box sx={{
+                    display: 'flex',
+                    width: "100%",
+                    padding: '0 15px',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                }}>
+                    <Box sx={{display: "flex", alignItems: "center",}}>
+                        <StyledLink sx={{display: 'flex', alignItems: 'center', width: 'auto'}}
+                                    to={!isAuth ? '/loginPage' : `/${ownerId}`}>
+                            <Box sx={{mr: 1}}>
+                                <img style={{width: "40px"}} src={logo} alt=""/>
                             </Box>
-                            <Box>
-                                {
-                                    isAuth ? (
-                                            <HeaderIconMenu logout={logoutUser} ownerPhoto={ownerPhoto} isAuth={isAuth} ownerName={login } currentUser={currentUser} />
-                                        )
-                                        : (
-                                            <StyledLink to={'/login'}>
-                                                <Typography>
-                                                    Login
-                                                </Typography>
-                                            </StyledLink>
-                                        )
-                                }
-                            </Box>
-                        </Box>
-                    </Toolbar>
-                </AppBar>
-            </Box>
-        </div>
+                            <Typography
+                                variant="h6"
+                                noWrap
+                                component="div"
+                                sx={{display: {xs: 'none', sm: 'block'}}}
+                            >
+                                GileadSocial
+                            </Typography>
+                        </StyledLink>
+                        <Search sx={{display: {xs: 'none', sm: 'block'}}}>
+                            <SearchIconWrapper>
+                                <SearchIcon/>
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{'aria-label': 'search'}}
+                            />
+                        </Search>
+                    </Box>
+                    <Box>
+                        {
+                            isAuth ? (
+                                    <HeaderIconMenu logout={logoutUser} ownerPhoto={ownerPhoto} isAuth={isAuth}
+                                                    ownerName={login} currentUser={currentUser}/>
+                                )
+                                : (
+                                    <StyledLink to={'/login'}>
+                                        <Typography>
+                                            Login
+                                        </Typography>
+                                    </StyledLink>
+                                )
+                        }
+                    </Box>
+                </Box>
+            </Toolbar>
+        </AppBar>
     );
 };
 

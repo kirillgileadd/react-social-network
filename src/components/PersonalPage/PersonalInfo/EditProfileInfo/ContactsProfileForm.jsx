@@ -21,17 +21,18 @@ const ContactsProfileForm = ({onSubmit, profile, openAlert}) => {
 
     return (
         <div>
-            <Box sx={{
+            <StyledPaper sx={{
                 typography: 'body1',
                 padding: '15px',
                 backgroundColor: 'grey.50',
-                borderRadius: '5px 5px 0px 0px'
+                borderRadius: '5px 5px 0px 0px',
+                marginBottom: '0px !important',
             }}>
                 <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
                     Main
                 </Box>
-            </Box>
-            <StyledPaper sx={{borderRadius: 0, boxShadow: 0}}>
+            </StyledPaper>
+            <StyledPaper sx={{borderRadius: '0px 0px 5px 5px', boxShadow: 0}}>
                 {
                     openAlert &&
                     <Alert sx={{mb: 2}} severity="success">

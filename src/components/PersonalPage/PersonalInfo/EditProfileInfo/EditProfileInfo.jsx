@@ -1,16 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import {StyledPaper} from "../../../../UI/StyledPaper";
 import Box from "@mui/material/Box";
-import {Grid, Tab, Tabs} from "@mui/material";
+import {Grid, Paper, Tab, Tabs} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import MainProfileForm from "./MainProfileForm";
 import ContactsProfileForm from "./ContactsProfileForm";
 import {useDispatch, useSelector} from "react-redux";
 import {editProfileInfo, fetchProfile} from "../../../../redux/actions/personalPage";
 import Loading from "../../../../Loading";
+import {styled} from "@mui/material/styles";
 
-const profileInfoContacts = ['Github', 'Vk', 'FaceBook', 'Instagram', 'Twitter', 'Website', 'Youtube', 'MainLink']
-
+export const StyledTabs = styled(Tabs)(({theme}) => ({
+    borderRight: 1,
+    borderColor: 'divider',
+    [theme.breakpoints.down('sm')]: {
+        '& .MuiButtonBase-root': {
+            maxWidth: '100%',
+            width: '100% '
+        },
+        '& .MuiTabs-indicator': {
+            display: 'none'
+        }
+    },
+}));
 function TabPanel(props) {
     const {children, value, index, ...other} = props;
 
@@ -82,9 +94,22 @@ const EditProfileInfo = ({userId}) => {
         dispatch(editProfileInfo(newProfile))
     };
 
+
     return (
-        <Grid container spacing={2}>
-            <Grid xs={8} item>
+        <Grid container spacing={2} direction="row-reverse">
+            <Grid item xs={12} sm={4}>
+                <StyledPaper sx={{marginBottom: {xs: "0px", sm: '16px'}}}>
+                    <StyledTabs
+                        orientation="vertical"
+                        value={value}
+                        onChange={handleChange}
+                    >`
+                        <Tab label={'Main'}/>
+                        <Tab label={'Contacts'}/>
+                    </StyledTabs>
+                </StyledPaper>
+            </Grid>
+            <Grid xs={12} sm={8} item>
                 <TabPanel value={value} index={0}>
                     {
                         isLoading ? <MainProfileForm onSubmit={onSubmit} profile={profile} openAlert={openAlert}/> : <Loading/>
@@ -96,19 +121,6 @@ const EditProfileInfo = ({userId}) => {
                         isLoading ? <ContactsProfileForm onSubmit={onSubmitContacts} profile={profile} openAlert={openAlert}/> : <Loading/>
                     }
                 </TabPanel>
-            </Grid>
-            <Grid item xs={4}>
-                <StyledPaper>
-                    <Tabs
-                        orientation="vertical"
-                        value={value}
-                        onChange={handleChange}
-                        sx={{borderRight: 1, borderColor: 'divider'}}
-                    >`
-                        <Tab label={'Main'}/>
-                        <Tab label={'Contacts'}/>
-                    </Tabs>
-                </StyledPaper>
             </Grid>
         </Grid>
     );

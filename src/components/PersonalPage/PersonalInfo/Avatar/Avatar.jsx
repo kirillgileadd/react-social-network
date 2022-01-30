@@ -65,7 +65,7 @@ const Avatar = ({photos, currentUser, savePhoto}) => {
     }
 
     return (
-        <StyledPaper>
+        <StyledPaper sx={{marginBottom: {xs: '0px', md: '16px'}}}>
             <AvatarBox>
                 <img style={{width: '100%', height: '100%', objectFit: 'cover'}} src={photos.large ?? noAvatarLarge}
                      alt=""/>

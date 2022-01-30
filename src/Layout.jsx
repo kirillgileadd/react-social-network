@@ -24,9 +24,9 @@ const Layout = () => {
         <>
             <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', pt: '65px'}}>
                 <Header/>
-                <Grid container sx={{maxWidth: '1050px', pt: 1, position: 'relative'}} spacing={2}>
+                <Grid container sx={{maxWidth: '1050px', position: 'relative'}} spacing={2}>
                     <NavBar navItems={navItems}/>
-                    <Grid item xs={12} md={10} sx={{mt: '8px'}} sx={{order: 1}}>
+                    <Grid item xs={12} md={10} sx={{mt: '8px', paddingBottom: {xs: '60px', md: "0px"}}}>
                         <Outlet/>
                     </Grid>
                 </Grid>

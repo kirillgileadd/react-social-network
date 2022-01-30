@@ -23,7 +23,7 @@ const LoginForm = ({onSubmit}) => {
         <Box
             component="form"
             sx={{
-                '& .MuiTextField-root': {m: 1},
+                '& .MuiTextField-root': {mb: 1, mt: 1},
             }}
         >
             <Box>
