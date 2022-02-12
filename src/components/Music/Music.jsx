@@ -4,7 +4,7 @@ import {StyledPaper} from "../../UI/StyledPaper";
 const Music = () => {
     return (
         <StyledPaper>
-            Musics
+            Music
         </StyledPaper>
     );
 };

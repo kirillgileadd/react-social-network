@@ -22,18 +22,21 @@ const PostInput = ({addPost, ownerPhoto}) => {
                 sx={{display: 'flex', alignItems: 'flex-start'}}
             >
                 <Avatar alt="Remy Sharp" src={ownerPhoto ?? noAvatarSmall}/>
-                <AddPostInput
-                    multiline
-                    maxRows={6}
-                    value={postInputValue}
-                    onChange={handlePostInputValue}
-                    sx={{ flex: 1, m: '0px 10px' }}
-                    placeholder="Share something new..."
-                    inputProps={{ 'aria-label': 'Share something new' }}
-                />
-                <IconButton onClick={() => addPost(postInputValue, setPostInputValue)} color={'primary'} aria-label="menu">
-                    <SendIcon />
-                </IconButton>
+                <Box sx={{width: "100%"}} display={'flex'}>
+                    <AddPostInput
+                        multiline
+                        maxRows={6}
+                        value={postInputValue}
+                        onChange={handlePostInputValue}
+                        sx={{flex: 1, m: '0px 10px', width: '100%'}}
+                        placeholder="Share something new..."
+                        inputProps={{'aria-label': 'Share something new'}}
+                    />
+                    <IconButton sx={{alignSelf: 'flex-end'}} onClick={() => addPost(postInputValue, setPostInputValue)} color={'primary'}
+                                aria-label="menu">
+                        <SendIcon/>
+                    </IconButton>
+                </Box>
             </Box>
         </StyledPaper>
     );

@@ -3,6 +3,8 @@ import {useForm} from "react-hook-form";
 import {Box, Button, Checkbox, FormControlLabel, TextField} from "@mui/material";
 import * as yup from "yup";
 import {yupResolver} from "@hookform/resolvers/yup";
+import Typography from "@mui/material/Typography";
+import {grey} from "@mui/material/colors";
 
 const LoginForm = ({onSubmit}) => {
     const schema = yup.object({
@@ -15,7 +17,7 @@ const LoginForm = ({onSubmit}) => {
             })
     }).required();
 
-    const {handleSubmit, register, formState, formState: {errors}, reset} = useForm({
+    const {handleSubmit, register, formState: {errors}} = useForm({
         resolver: yupResolver(schema)
     });
 
@@ -27,6 +29,9 @@ const LoginForm = ({onSubmit}) => {
             }}
         >
             <Box>
+                <Typography variant={'body2'} color={grey[400]}>
+                    Email: free@samuraijs.com
+                </Typography>
                 <TextField
                     {...register("email")}
                     helperText={errors.email && errors.email.message}
@@ -36,6 +41,9 @@ const LoginForm = ({onSubmit}) => {
                     defaultValue=""
                     fullWidth
                 />
+                <Typography variant={'body2'} color={grey[400]}>
+                    Password: free
+                </Typography>
                 <TextField
                     {...register("password")}
                     helperText={errors.password && errors.password.message}
