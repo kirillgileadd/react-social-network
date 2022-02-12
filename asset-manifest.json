@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-social-network/static/css/main.02f41c31.css",
-    "main.js": "/react-social-network/static/js/main.02356ac0.js",
+    "main.js": "/react-social-network/static/js/main.698b45c0.js",
     "static/media/loginBG.jpg": "/react-social-network/static/media/loginBG.c0c7280047ce0bc18ace.jpg",
     "static/media/img.jpg": "/react-social-network/static/media/img.46eae3df8dabb22f76f2.jpg",
     "static/media/finalLogo.svg": "/react-social-network/static/media/finalLogo.8363cfe9b084cbbc0024b9eeef27068e.svg",
@@ -12,10 +12,10 @@
     "static/media/noAvatarSmall.svg": "/react-social-network/static/media/noAvatarSmall.e214edc06a5cf46804a6a73212ba93a9.svg",
     "static/media/noPhoto.svg": "/react-social-network/static/media/noPhoto.eea795c6e0dd13ad45fd839a244e7dc4.svg",
     "main.02f41c31.css.map": "/react-social-network/static/css/main.02f41c31.css.map",
-    "main.02356ac0.js.map": "/react-social-network/static/js/main.02356ac0.js.map"
+    "main.698b45c0.js.map": "/react-social-network/static/js/main.698b45c0.js.map"
   },
   "entrypoints": [
     "static/css/main.02f41c31.css",
-    "static/js/main.02356ac0.js"
+    "static/js/main.698b45c0.js"
   ]
 }
